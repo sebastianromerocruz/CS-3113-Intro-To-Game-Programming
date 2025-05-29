@@ -9,11 +9,11 @@ SRCS = main.cpp
 TARGET = raylib_app
 
 # Raylib and Frameworks (macOS-specific)
-LIBS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+LIBS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo -I CS3113/*.cpp
 
 # Build rule
 $(TARGET): $(SRCS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS) $(LIBS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS) $(LIBS) -v
 
 # Clean rule
 clean:

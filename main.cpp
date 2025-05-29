@@ -1,89 +1,96 @@
-#include "raylib.h"
-#include <iostream>
+#include "CS3113/cs3113.h"
 
-enum AppStatus { RUNNING, TERMINATED };
+// Global Constants
+constexpr int SCREEN_WIDTH  = 800,
+              SCREEN_HEIGHT = 450,
+              FPS           = 60;
 
-constexpr int WINDOW_WIDTH  = 640 * 2;
-constexpr int WINDOW_HEIGHT = 480 * 2;
+constexpr char SAPPHO_FP[] = "assets/sappho.png";
 
-constexpr char SHIELD_SPRITE_FILEPATH[] = "assets/shield.png";
-constexpr float INIT_SCALE_X = 0.5f;
-constexpr float INIT_SCALE_Y = 0.599625f;
-constexpr float g_shield_speed = 5.0f;  // move 1 unit per second
+// Global Variables
+AppStatus gAppStatus = RUNNING;
+Entity* gPlayer = nullptr;
 
-AppStatus g_app_status = RUNNING;
+// Function Declarations
+void initialise();
+void processInput();
+void update();
+void render();
+void shutdown();
 
-Texture2D g_shield_texture;
-
-Vector2 g_shield_position = { 0.0f, 0.0f };
-Vector2 g_shield_movement = { 0.0f, 0.0f };
-
+// Function Definitions
 void initialise()
 {
-    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Hello, Player Input!");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "");
+    // hello();
 
-    // Load texture
-    g_shield_texture = LoadTexture(SHIELD_SPRITE_FILEPATH);
+    Rectangle body = {
+        SCREEN_WIDTH  / 2.0f,
+        SCREEN_HEIGHT / 2.0f,
+        SIZE, 
+        SIZE
+    };
 
-    // Set the target FPS
-    SetTargetFPS(60);
+    Vector2 startingPosition = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+
+    gPlayer = new Entity(body, startingPosition);
+
+    // gPlayer.body = ;
+
+    // gPlayer.movement = { 0.0f, 0.0f };
+    // gPlayer.position = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+
+    SetTargetFPS(FPS);
 }
 
-void process_input()
+void processInput() 
 {
-    if (IsKeyPressed(KEY_ESCAPE)) {
-        g_app_status = TERMINATED;
-    }
+    gPlayer->mMovement = { 0.0f, 0.0f };
 
-    // Update movement based on keyboard input (e.g., WASD or arrow keys)
-    g_shield_movement = (Vector2){0.0f, 0.0f};
-    if (IsKeyDown(KEY_W)) g_shield_movement.y -= 1.0f;
-    if (IsKeyDown(KEY_S)) g_shield_movement.y += 1.0f;
-    if (IsKeyDown(KEY_A)) g_shield_movement.x -= 1.0f;
-    if (IsKeyDown(KEY_D)) g_shield_movement.x += 1.0f;
+    if      (IsKeyDown(KEY_A)) gPlayer->mMovement.x =  1;
+    else if (IsKeyDown(KEY_D)) gPlayer->mMovement.x = -1;
+    else if (IsKeyDown(KEY_W)) gPlayer->mMovement.y = -1;
+    else if (IsKeyDown(KEY_S)) gPlayer->mMovement.y =  1;
+
+    if (IsKeyDown(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 }
 
 void update()
 {
-    /* DELTA TIME */
-    float delta_time = GetFrameTime();
+    // resetEntity(gPlayer);
 
-    /* GAME LOGIC */
-    g_shield_position.x += g_shield_movement.x * g_shield_speed * delta_time;
-    g_shield_position.y += g_shield_movement.y * g_shield_speed * delta_time;
+    gPlayer->mPosition.x += gPlayer->mMovement.x * 2;
+    gPlayer->mPosition.y += gPlayer->mMovement.y * 2;
+
+    // translate(gPlayer);
 }
 
 void render()
 {
     BeginDrawing();
-    ClearBackground(RAYWHITE);
 
-    // Draw the shield texture
-    DrawTextureEx(g_shield_texture, (Vector2) { 
-        (float) (WINDOW_WIDTH / 2 + g_shield_position.x * 50.0f - (g_shield_texture.width * INIT_SCALE_X / 2)),
-        (float) (WINDOW_HEIGHT / 2 + g_shield_position.y * 50.0f - (g_shield_texture.height * INIT_SCALE_Y / 2))
-    }, 0.0f, INIT_SCALE_X, WHITE);
+    ClearBackground(RAYWHITE);
+    DrawRectangleRec(gPlayer->mBody, RED);
 
     EndDrawing();
 }
 
-void shutdown()
-{
-    UnloadTexture(g_shield_texture);
-    CloseWindow();
+void shutdown() 
+{ 
+    delete gPlayer;
+    CloseWindow(); // Close window and OpenGL context
 }
 
-int main()
+int main(void)
 {
     initialise();
 
-    while (g_app_status == RUNNING)
+    while (gAppStatus == RUNNING)
     {
-        process_input();
+        processInput();
         update();
         render();
     }
 
-    shutdown();
     return 0;
 }
