@@ -10,6 +10,7 @@ constexpr char SAPPHO_FP[] = "assets/sappho.png";
 // Global Variables
 AppStatus gAppStatus = RUNNING;
 Entity* gPlayer = nullptr;
+float gTime = 0.0f;
 
 // Function Declarations
 void initialise();
@@ -22,47 +23,27 @@ void shutdown();
 void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "");
-    // hello();
 
-    Rectangle body = {
-        SCREEN_WIDTH  / 2.0f,
-        SCREEN_HEIGHT / 2.0f,
-        SIZE, 
-        SIZE
-    };
-
-    Vector2 startingPosition = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
-
-    gPlayer = new Entity(body, startingPosition);
-
-    // gPlayer.body = ;
-
-    // gPlayer.movement = { 0.0f, 0.0f };
-    // gPlayer.position = { SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f };
+    gPlayer = new Entity { SCREEN_WIDTH, SCREEN_HEIGHT };
 
     SetTargetFPS(FPS);
 }
 
 void processInput() 
 {
-    gPlayer->mMovement = { 0.0f, 0.0f };
+    gPlayer->resetMovement();
 
-    if      (IsKeyDown(KEY_A)) gPlayer->mMovement.x =  1;
-    else if (IsKeyDown(KEY_D)) gPlayer->mMovement.x = -1;
-    else if (IsKeyDown(KEY_W)) gPlayer->mMovement.y = -1;
-    else if (IsKeyDown(KEY_S)) gPlayer->mMovement.y =  1;
+    if      (IsKeyDown(KEY_A)) gPlayer->moveLeft();
+    else if (IsKeyDown(KEY_D)) gPlayer->moveRight();
+    else if (IsKeyDown(KEY_W)) gPlayer->moveUp();
+    else if (IsKeyDown(KEY_S)) gPlayer->moveDown();
 
     if (IsKeyDown(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 }
 
 void update()
 {
-    // resetEntity(gPlayer);
-
-    gPlayer->mPosition.x += gPlayer->mMovement.x * 2;
-    gPlayer->mPosition.y += gPlayer->mMovement.y * 2;
-
-    // translate(gPlayer);
+    gPlayer->update();
 }
 
 void render()
@@ -70,9 +51,17 @@ void render()
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
-    DrawRectangleRec(gPlayer->mBody, RED);
+
+    rlPushMatrix();
+    // rlTranslatef(gPlayer->getPosition().x, gPlayer->getPosition().y, 0.0f);
+    rlRotatef(gTime, 0.0f, 0.0f, -1.0f);
+
+    DrawRectangleRec(gPlayer->getBody(), RED);
+    rlPopMatrix();
 
     EndDrawing();
+
+    gTime += 0.05f;
 }
 
 void shutdown() 
