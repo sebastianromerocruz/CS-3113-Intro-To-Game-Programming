@@ -1,8 +1,8 @@
 #include "CS3113/cs3113.h"
 
 // Global Constants
-constexpr int SCREEN_WIDTH  = 800,
-              SCREEN_HEIGHT = 450,
+constexpr int SCREEN_WIDTH  = 800 * 2,
+              SCREEN_HEIGHT = 450 * 2,
               FPS           = 60;
 
 constexpr char SAPPHO_FP[] = "/Users/sebastianromerocruz/Documents/Prōposita/game-dev/raylib/raylib-user-input/assets/sappho.png";
@@ -26,7 +26,7 @@ void initialise()
 
     gPlayer = new Entity { 
         SCREEN_WIDTH, SCREEN_HEIGHT,
-        40, 40,
+        10, 10,
         SAPPHO_FP 
     };
 
@@ -39,7 +39,7 @@ void processInput()
 
     if      (IsKeyDown(KEY_A)) gPlayer->moveLeft();
     else if (IsKeyDown(KEY_D)) gPlayer->moveRight();
-    else if (IsKeyDown(KEY_W)) gPlayer->moveUp();
+    if      (IsKeyDown(KEY_W)) gPlayer->moveUp();
     else if (IsKeyDown(KEY_S)) gPlayer->moveDown();
 
     if (IsKeyDown(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
@@ -56,7 +56,7 @@ void render()
 
     ClearBackground(RAYWHITE);
 
-    // DrawRectangleRec(gPlayer->getBody(), RED);
+    gPlayer->render();
 
     EndDrawing();
 

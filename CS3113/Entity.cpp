@@ -1,11 +1,19 @@
 #include "Entity.h"
 
-Entity::Entity() : mBody { 0.0f, 0.0f, 0.0f, 0.0f }, mPosition { 0.0f, 0.0f }, mMovement { 0.0f, 0.0f } {}
+Entity::Entity() : mBody { 0.0f, 0.0f, 0.0f, 0.0f }, mPosition { 0.0f, 0.0f }, 
+                   mMovement { 0.0f, 0.0f }, mScreenWidth {0}, mScreenHeight {0} {}
 
-Entity::Entity(Rectangle body, Vector2 position) : mBody {body}, mPosition {position}, mMovement { 0.0f, 0.0f } {}
+Entity::Entity(Rectangle body, Vector2 position) : mBody {body}, 
+                                                   mPosition {position}, 
+                                                   mMovement { 0.0f, 0.0f },
+                                                   mScreenWidth {0}, 
+                                                   mScreenHeight {0} {}
 
 Entity::Entity(int screenWidth, int screenHeight) : mMovement { 0.0f, 0.0f }
 {
+    mScreenHeight = screenHeight;
+    mScreenWidth = screenWidth;
+
     mBody = {
         screenWidth  / 2.0f,
         screenHeight / 2.0f,
@@ -37,11 +45,31 @@ void Entity::frameReset()
 void Entity::update()
 {
     frameReset();
-    DrawTexture(mTexture, mPosition.x - mTexture.width / 2.0f, mPosition.y - mTexture.height / 2.0f, WHITE);
 
-    mPosition.x += mMovement.x * 2;
-    mPosition.y += mMovement.y * 2;
+    mPosition.x += mMovement.x * DEFAULT_SPEED;
+    mPosition.y += mMovement.y * DEFAULT_SPEED;
 
     mBody.x = mPosition.x; 
     mBody.y = mPosition.y;
+}
+
+void Entity::render()
+{
+    // Part of the texture to use for drawing (UV-coordinates)
+    Rectangle textureRect = { 0.0f, 0.0f, (float) mTexture.width, (float) mTexture.height };
+
+    // Screen rectangle where drawing part of texture
+    Rectangle destinationRect = {
+        mPosition.x,
+        mPosition.y,
+        static_cast<float>(mTexture.width),
+        static_cast<float>(mTexture.height)
+    };
+
+    // Origin of TEXTURE
+    Vector2 textureOrigin = { (float) mTexture.width / 2.0f, (float) mTexture.height / 2.0f };
+
+    DrawTexturePro(mTexture, textureRect, destinationRect, textureOrigin, mAngle++, WHITE);
+
+    // DrawTexture(mTexture, mPosition.x - mTexture.width / 2.0f, mPosition.y - mTexture.height / 2.0f, WHITE);
 }

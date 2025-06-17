@@ -13,11 +13,16 @@ private:
     Vector2 mPosition;
     Vector2 mMovement;
     Texture2D mTexture;
+    int mScreenWidth;
+    int mScreenHeight;
+
+    int mAngle = 0;
 
     void frameReset();
 
 public:
     static const int DEFAULT_SIZE = 40;
+    static const int DEFAULT_SPEED = 5;
 
     Entity();
     Entity(Rectangle body, Vector2 position);
@@ -26,6 +31,7 @@ public:
     ~Entity();
 
     void update();
+    void render();
 
     void moveUp()    { mMovement.y = -1; }
     void moveDown()  { mMovement.y =  1; }
