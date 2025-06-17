@@ -16,7 +16,15 @@ Entity::Entity(int screenWidth, int screenHeight) : mMovement { 0.0f, 0.0f }
     mPosition = { screenWidth / 2.0f, screenHeight / 2.0f };
 }
 
-Entity::~Entity() {};
+Entity::Entity(int screenWidth, int screenHeight, int height, int width, const char* textureFilepath) : Entity { screenWidth, screenHeight }
+{
+    mTexture = LoadTexture(textureFilepath);
+}
+
+Entity::~Entity() 
+{
+    UnloadTexture(mTexture);
+};
 
 void Entity::frameReset()
 {
@@ -29,6 +37,7 @@ void Entity::frameReset()
 void Entity::update()
 {
     frameReset();
+    DrawTexture(mTexture, mPosition.x - mTexture.width / 2.0f, mPosition.y - mTexture.height / 2.0f, WHITE);
 
     mPosition.x += mMovement.x * 2;
     mPosition.y += mMovement.y * 2;

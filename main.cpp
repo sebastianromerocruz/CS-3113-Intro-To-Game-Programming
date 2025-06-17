@@ -5,7 +5,7 @@ constexpr int SCREEN_WIDTH  = 800,
               SCREEN_HEIGHT = 450,
               FPS           = 60;
 
-constexpr char SAPPHO_FP[] = "assets/sappho.png";
+constexpr char SAPPHO_FP[] = "/Users/sebastianromerocruz/Documents/Prōposita/game-dev/raylib/raylib-user-input/assets/sappho.png";
 
 // Global Variables
 AppStatus gAppStatus = RUNNING;
@@ -22,9 +22,13 @@ void shutdown();
 // Function Definitions
 void initialise()
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Sappho");
 
-    gPlayer = new Entity { SCREEN_WIDTH, SCREEN_HEIGHT };
+    gPlayer = new Entity { 
+        SCREEN_WIDTH, SCREEN_HEIGHT,
+        40, 40,
+        SAPPHO_FP 
+    };
 
     SetTargetFPS(FPS);
 }
@@ -52,12 +56,7 @@ void render()
 
     ClearBackground(RAYWHITE);
 
-    rlPushMatrix();
-    // rlTranslatef(gPlayer->getPosition().x, gPlayer->getPosition().y, 0.0f);
-    rlRotatef(gTime, 0.0f, 0.0f, -1.0f);
-
-    DrawRectangleRec(gPlayer->getBody(), RED);
-    rlPopMatrix();
+    // DrawRectangleRec(gPlayer->getBody(), RED);
 
     EndDrawing();
 

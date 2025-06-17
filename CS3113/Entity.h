@@ -12,6 +12,7 @@ private:
     Rectangle mBody;
     Vector2 mPosition;
     Vector2 mMovement;
+    Texture2D mTexture;
 
     void frameReset();
 
@@ -21,14 +22,15 @@ public:
     Entity();
     Entity(Rectangle body, Vector2 position);
     Entity(int screenWidth, int screenHeight);
+    Entity(int screenWidth, int screenHeight, int height, int width, const char* textureFilepath);
     ~Entity();
 
     void update();
 
     void moveUp()    { mMovement.y = -1; }
     void moveDown()  { mMovement.y =  1; }
-    void moveLeft()  { mMovement.x =  1; }
-    void moveRight() { mMovement.x = -1; }
+    void moveLeft()  { mMovement.x = -1; }
+    void moveRight() { mMovement.x =  1; }
 
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
 
