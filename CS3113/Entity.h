@@ -30,7 +30,7 @@ public:
     Entity(int screenWidth, int screenHeight, int height, int width, const char* textureFilepath);
     ~Entity();
 
-    void update();
+    void update(float deltaTime);
     void render();
 
     void moveUp()    { mMovement.y = -1; }

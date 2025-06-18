@@ -6,11 +6,14 @@ constexpr int SCREEN_WIDTH  = 800 * 2,
               FPS           = 60;
 
 constexpr char SAPPHO_FP[] = "/Users/sebastianromerocruz/Documents/Prōposita/game-dev/raylib/raylib-user-input/assets/sappho.png";
+constexpr float FIXED_TIMESTEP = 1.0f / 60.0f;
 
 // Global Variables
 AppStatus gAppStatus = RUNNING;
 Entity* gPlayer = nullptr;
-float gTime = 0.0f;
+float gPreviousTicks = 0.0f;
+float gTimeAccumulator = 0.0f;
+int gAccTimes = 0;
 
 // Function Declarations
 void initialise();
@@ -42,12 +45,34 @@ void processInput()
     if      (IsKeyDown(KEY_W)) gPlayer->moveUp();
     else if (IsKeyDown(KEY_S)) gPlayer->moveDown();
 
-    if (IsKeyDown(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
+    if (IsKeyPressed(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 }
 
 void update()
 {
-    gPlayer->update();
+    // Delta time
+    float ticks = (float) GetTime();
+    float deltaTime = ticks - gPreviousTicks;
+    gPreviousTicks = ticks;
+
+    // Fixed timestep
+    deltaTime += gTimeAccumulator;
+
+    if (deltaTime < FIXED_TIMESTEP)
+    {
+        gTimeAccumulator = deltaTime;
+        return;
+    }
+
+    gAccTimes = 0;
+
+    while (deltaTime >= FIXED_TIMESTEP)
+    {
+        gPlayer->update(deltaTime);
+        deltaTime -= FIXED_TIMESTEP;
+    }
+
+    gTimeAccumulator = deltaTime;
 }
 
 void render()
@@ -59,8 +84,6 @@ void render()
     gPlayer->render();
 
     EndDrawing();
-
-    gTime += 0.05f;
 }
 
 void shutdown() 

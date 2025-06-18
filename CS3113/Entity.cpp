@@ -42,12 +42,12 @@ void Entity::frameReset()
     mBody.height = DEFAULT_SIZE;
 }
 
-void Entity::update()
+void Entity::update(float deltaTime)
 {
     frameReset();
 
-    mPosition.x += mMovement.x * DEFAULT_SPEED;
-    mPosition.y += mMovement.y * DEFAULT_SPEED;
+    mPosition.x += mMovement.x * DEFAULT_SPEED * deltaTime;
+    mPosition.y += mMovement.y * DEFAULT_SPEED * deltaTime;
 
     mBody.x = mPosition.x; 
     mBody.y = mPosition.y;
@@ -56,6 +56,7 @@ void Entity::update()
 void Entity::render()
 {
     // Part of the texture to use for drawing (UV-coordinates)
+    // in this case, the entire texture
     Rectangle textureRect = { 0.0f, 0.0f, (float) mTexture.width, (float) mTexture.height };
 
     // Screen rectangle where drawing part of texture
@@ -69,7 +70,5 @@ void Entity::render()
     // Origin of TEXTURE
     Vector2 textureOrigin = { (float) mTexture.width / 2.0f, (float) mTexture.height / 2.0f };
 
-    DrawTexturePro(mTexture, textureRect, destinationRect, textureOrigin, mAngle++, WHITE);
-
-    // DrawTexture(mTexture, mPosition.x - mTexture.width / 2.0f, mPosition.y - mTexture.height / 2.0f, WHITE);
+    DrawTexturePro(mTexture, textureRect, destinationRect, textureOrigin, mAngle, WHITE);
 }
