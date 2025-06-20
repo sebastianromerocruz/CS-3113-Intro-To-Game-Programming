@@ -15,6 +15,9 @@ private:
     Texture2D mTexture;
     int mScreenWidth;
     int mScreenHeight;
+    int mWidth;
+    int mHeight;
+    int mSpeed;
 
     int mAngle = 0;
 
@@ -27,7 +30,7 @@ public:
     Entity();
     Entity(Rectangle body, Vector2 position);
     Entity(int screenWidth, int screenHeight);
-    Entity(int screenWidth, int screenHeight, int height, int width, const char* textureFilepath);
+    Entity(int screenWidth, int screenHeight, int height, int width, int speed, const char* textureFilepath);
     ~Entity();
 
     void update(float deltaTime);
@@ -39,6 +42,7 @@ public:
     void moveRight() { mMovement.x =  1; }
 
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
+    bool const checkCollision(Entity* other) const;
 
     const Rectangle getBody()     const { return mBody;     }
     const Vector2   getPosition() const { return mPosition; }
