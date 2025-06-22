@@ -12,6 +12,8 @@ private:
     Rectangle mBody;
     Vector2 mPosition;
     Vector2 mMovement;
+    Vector2 mVelocity;
+    Vector2 mAcceleration;
     Texture2D mTexture;
     int mScreenWidth;
     int mScreenHeight;
@@ -30,7 +32,9 @@ public:
     Entity();
     Entity(Rectangle body, Vector2 position);
     Entity(int screenWidth, int screenHeight);
-    Entity(int screenWidth, int screenHeight, int height, int width, int speed, const char* textureFilepath);
+    Entity(int screenWidth, int screenHeight, 
+        int height, int width, 
+        int speed, const char* textureFilepath);
     ~Entity();
 
     void update(float deltaTime);
@@ -44,13 +48,17 @@ public:
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
     bool const checkCollision(Entity* other) const;
 
-    const Rectangle getBody()     const { return mBody;     }
-    const Vector2   getPosition() const { return mPosition; }
-    const Vector2   getMovement() const { return mMovement; }
+    const Rectangle getBody()         const { return mBody;     }
+    const Vector2   getPosition()     const { return mPosition; }
+    const Vector2   getMovement()     const { return mMovement; }
+    const Vector2   getVelocity()     const { return mVelocity; }
+    const Vector2   getAcceleration() const { return mAcceleration; }
 
     void setBody(Rectangle newBody)       { mBody = newBody;         }
     void setPosition(Vector2 newPosition) { mPosition = newPosition; }
     void setMovement(Vector2 newMovement) { mMovement = newMovement; }
+    void setVelocity(Vector2 newVelocity) { mVelocity = newVelocity; }
+    void setAcceleration(Vector2 newAcceleration) { mAcceleration = newAcceleration; }
 };
 
 #endif // ENTITY_CPP

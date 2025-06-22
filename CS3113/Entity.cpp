@@ -32,6 +32,8 @@ Entity::Entity(int screenWidth, int screenHeight, int height, int width, int spe
     mWidth   = width;
     mHeight  = height;
     mSpeed   = speed;
+    mAcceleration = { 0.0f, 9.81f };
+    mVelocity = { 0.0f, 0.0f };
     mTexture = LoadTexture(textureFilepath);
 }
 
@@ -60,11 +62,21 @@ void Entity::update(float deltaTime)
 {
     frameReset();
 
-    mPosition.x += mMovement.x * mSpeed * deltaTime;
-    mPosition.y += mMovement.y * mSpeed * deltaTime;
+    // mPosition.x += mMovement.x * mSpeed * deltaTime;
+    // mPosition.y += mMovement.y * mSpeed * deltaTime;
 
-    mBody.x = mPosition.x; 
-    mBody.y = mPosition.y;
+    // mBody.x = mPosition.x; 
+    // mBody.y = mPosition.y;
+
+    // Our character moves from left to right, so they need an initial velocity
+    mVelocity.x = mMovement.x * mSpeed;
+
+    // And we add the gravity next
+    mVelocity.x += mAcceleration.x;
+    mVelocity.y += mAcceleration.y;
+
+    mPosition.x += mVelocity.x * deltaTime;
+    mPosition.y += mVelocity.y * deltaTime;
 }
 
 void Entity::render()
