@@ -50,17 +50,37 @@ bool const Entity::checkCollision(Entity* other) const
     return xDistance < 0.0f && yDistance < 0.0f;
 }
 
-void Entity::frameReset()
+void const Entity::checkCollisionY(Entity *collidableEntities, int collidableEntityCount)
 {
-    mBody.x = 0;
-    mBody.y = 0;
-    mBody.width = DEFAULT_SIZE;
-    mBody.height = DEFAULT_SIZE;
+    for (int i = 0; i < collidableEntityCount; i++)
+    {
+        // STEP 1: For every entity that our player can collide with...
+        Entity *collidableEntity = &collidableEntities[i];
+        
+        if (checkCollision(collidableEntity))
+        {
+            // STEP 2: Calculate the distance between its centre and our centre
+            //         and use that to calculate the amount of overlap between
+            //         both bodies.
+            float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
+            float y_overlap = fabs(yDistance - (mHeight / 2.0f) - (collidableEntity->mHeight / 2.0f));
+            
+            // STEP 3: "Unclip" ourselves from the other entity, and zero our
+            //         vertical velocity.
+            if (mVelocity.y > 0) {
+                mPosition.y -= y_overlap;
+                mVelocity.y  = 0;
+            } else if (mVelocity.y < 0) {
+                mPosition.y += y_overlap;
+                mVelocity.y  = 0;
+            }
+        }
+    }
 }
 
-void Entity::update(float deltaTime)
+void Entity::update(float deltaTime, Entity* collidableEntities, int collidableEntityCount)
 {
-    frameReset();
+    checkCollisionY(collidableEntities, collidableEntityCount);
 
     // mPosition.x += mMovement.x * mSpeed * deltaTime;
     // mPosition.y += mMovement.y * mSpeed * deltaTime;

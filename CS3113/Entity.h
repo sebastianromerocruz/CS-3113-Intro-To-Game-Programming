@@ -23,7 +23,8 @@ private:
 
     int mAngle = 0;
 
-    void frameReset();
+    bool const checkCollision(Entity* other) const;
+    void const checkCollisionY(Entity *collidableEntities, int collidableEntityCount);
 
 public:
     static const int DEFAULT_SIZE = 40;
@@ -37,7 +38,7 @@ public:
         int speed, const char* textureFilepath);
     ~Entity();
 
-    void update(float deltaTime);
+    void update(float deltaTime, Entity* collidableEntities, int collidableEntityCount);
     void render();
 
     void moveUp()    { mMovement.y = -1; }
@@ -46,13 +47,14 @@ public:
     void moveRight() { mMovement.x =  1; }
 
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
-    bool const checkCollision(Entity* other) const;
 
-    const Rectangle getBody()         const { return mBody;     }
-    const Vector2   getPosition()     const { return mPosition; }
-    const Vector2   getMovement()     const { return mMovement; }
-    const Vector2   getVelocity()     const { return mVelocity; }
+    const Rectangle getBody()         const { return mBody;         }
+    const Vector2   getPosition()     const { return mPosition;     }
+    const Vector2   getMovement()     const { return mMovement;     }
+    const Vector2   getVelocity()     const { return mVelocity;     }
     const Vector2   getAcceleration() const { return mAcceleration; }
+    const int       getWidth()        const { return mWidth;        }
+    const int       getHeight()       const { return mHeight;       }
 
     void setBody(Rectangle newBody)       { mBody = newBody;         }
     void setPosition(Vector2 newPosition) { mPosition = newPosition; }
