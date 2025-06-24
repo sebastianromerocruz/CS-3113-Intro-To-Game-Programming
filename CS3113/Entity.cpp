@@ -2,14 +2,16 @@
 
 Entity::Entity() : mPosition {0.0f, 0.0f}, mAcceleration {0.0f, 0.0f}, 
                    mVelocity {0.0f, 0.0f}, mMovement {0.0f, 0.0f}, 
-                   mWidth {1.0f}, mHeight {1.0f}, mSpeed {DEFAULT_SPEED} {}
+                   mWidth {1.0f}, mHeight {1.0f}, mSpeed {DEFAULT_SPEED}, 
+                   mAngle {0.0f} {}
 
 Entity::Entity(int screenWidth, int screenHeight, int height, int width, 
                int speed, const char* textureFilepath) : 
                     mPosition {screenWidth / 2.0f, screenHeight / 2.0f},
                     mAcceleration {0.0f, 9.81f}, mVelocity {0.0f, 0.0f},
                     mMovement {0.0f, 0.0f}, mWidth {width}, mHeight {height},
-                    mSpeed {speed}, mTexture {LoadTexture(textureFilepath)} {}
+                    mSpeed {speed}, mAngle {0.0f}, 
+                    mTexture {LoadTexture(textureFilepath)} {}
 
 Entity::~Entity() { UnloadTexture(mTexture); };
 

@@ -1,21 +1,20 @@
 #include "CS3113/cs3113.h"
 
 // Global Constants
-constexpr int SCREEN_WIDTH  = 800 * 1.5f,
-              SCREEN_HEIGHT = 450 * 1.5f,
-              FPS           = 60;
+constexpr int SCREEN_WIDTH        = 800 * 1.5f,
+              SCREEN_HEIGHT       = 450 * 1.5f,
+              FPS                 = 60,
+              NUMBER_OF_PLATFORMS = 3;
 
-constexpr char SAPPHO_FP[] = "assets/sappho.png";
+constexpr char SAPPHO_FP[]     = "assets/sappho.png";
 constexpr float FIXED_TIMESTEP = 1.0f / 60.0f;
 
-constexpr int NUMBER_OF_PLATFORMS = 3;
-
 // Global Variables
-AppStatus gAppStatus = RUNNING;
-Entity* gPlayer = nullptr;
-Entity* gPlatforms = nullptr;
-float gPreviousTicks = 0.0f;
-float gTimeAccumulator = 0.0f;
+AppStatus gAppStatus   = RUNNING;
+Entity* gPlayer        = nullptr;
+Entity* gPlatforms     = nullptr;
+float gPreviousTicks   = 0.0f,
+      gTimeAccumulator = 0.0f;
 
 // Function Declarations
 void initialise();
@@ -72,7 +71,8 @@ void processInput()
     if      (IsKeyDown(KEY_W)) gPlayer->moveUp();
     else if (IsKeyDown(KEY_S)) gPlayer->moveDown();
 
-    if (IsKeyPressed(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
+    if (IsKeyPressed(KEY_Q) || WindowShouldClose()) 
+        gAppStatus = TERMINATED;
 }
 
 void update()
