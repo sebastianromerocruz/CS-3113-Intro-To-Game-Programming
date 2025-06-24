@@ -9,21 +9,17 @@
 class Entity
 {
 private:
-    Rectangle mBody;
     Vector2 mPosition;
     Vector2 mMovement;
     Vector2 mVelocity;
     Vector2 mAcceleration;
     Texture2D mTexture;
-    int mScreenWidth;
-    int mScreenHeight;
     int mWidth;
     int mHeight;
     int mSpeed;
-
     int mAngle = 0;
 
-    bool const checkCollision(Entity* other) const;
+    bool const isColliding(Entity* other) const;
     void const checkCollisionY(Entity *collidableEntities, int collidableEntityCount);
 
 public:
@@ -31,8 +27,6 @@ public:
     static const int DEFAULT_SPEED = 5;
 
     Entity();
-    Entity(Rectangle body, Vector2 position);
-    Entity(int screenWidth, int screenHeight);
     Entity(int screenWidth, int screenHeight, 
         int height, int width, 
         int speed, const char* textureFilepath);
@@ -48,7 +42,6 @@ public:
 
     void resetMovement() { mMovement = { 0.0f, 0.0f }; }
 
-    const Rectangle getBody()         const { return mBody;         }
     const Vector2   getPosition()     const { return mPosition;     }
     const Vector2   getMovement()     const { return mMovement;     }
     const Vector2   getVelocity()     const { return mVelocity;     }
@@ -56,7 +49,6 @@ public:
     const int       getWidth()        const { return mWidth;        }
     const int       getHeight()       const { return mHeight;       }
 
-    void setBody(Rectangle newBody)       { mBody = newBody;         }
     void setPosition(Vector2 newPosition) { mPosition = newPosition; }
     void setMovement(Vector2 newMovement) { mMovement = newMovement; }
     void setVelocity(Vector2 newVelocity) { mVelocity = newVelocity; }

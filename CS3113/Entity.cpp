@@ -1,48 +1,19 @@
 #include "Entity.h"
 
-Entity::Entity() : mBody { 0.0f, 0.0f, 0.0f, 0.0f }, mPosition { 0.0f, 0.0f }, 
-                   mMovement { 0.0f, 0.0f }, mScreenWidth {0}, mScreenHeight {0}, 
-                   mSpeed {DEFAULT_SPEED} {}
+Entity::Entity() : mPosition {0.0f, 0.0f}, mAcceleration {0.0f, 0.0f}, 
+                   mVelocity {0.0f, 0.0f}, mMovement {0.0f, 0.0f}, 
+                   mWidth {1.0f}, mHeight {1.0f}, mSpeed {DEFAULT_SPEED} {}
 
-Entity::Entity(Rectangle body, Vector2 position) : mBody {body}, 
-                                                   mPosition {position}, 
-                                                   mMovement { 0.0f, 0.0f },
-                                                   mScreenWidth {0}, 
-                                                   mScreenHeight {0}, 
-                                                   mSpeed {DEFAULT_SPEED} {}
+Entity::Entity(int screenWidth, int screenHeight, int height, int width, 
+               int speed, const char* textureFilepath) : 
+                    mPosition {screenWidth / 2.0f, screenHeight / 2.0f},
+                    mAcceleration {0.0f, 9.81f}, mVelocity {0.0f, 0.0f},
+                    mMovement {0.0f, 0.0f}, mWidth {width}, mHeight {height},
+                    mSpeed {speed}, mTexture {LoadTexture(textureFilepath)} {}
 
-Entity::Entity(int screenWidth, int screenHeight) : mMovement { 0.0f, 0.0f }, 
-                                                    mSpeed {DEFAULT_SPEED}
-{
-    mScreenHeight = screenHeight;
-    mScreenWidth = screenWidth;
+Entity::~Entity() { UnloadTexture(mTexture); };
 
-    mBody = {
-        screenWidth  / 2.0f,
-        screenHeight / 2.0f,
-        DEFAULT_SIZE,
-        DEFAULT_SIZE
-    };
-
-    mPosition = { screenWidth / 2.0f, screenHeight / 2.0f };
-}
-
-Entity::Entity(int screenWidth, int screenHeight, int height, int width, int speed, const char* textureFilepath) : Entity { screenWidth, screenHeight }
-{
-    mWidth   = width;
-    mHeight  = height;
-    mSpeed   = speed;
-    mAcceleration = { 0.0f, 9.81f };
-    mVelocity = { 0.0f, 0.0f };
-    mTexture = LoadTexture(textureFilepath);
-}
-
-Entity::~Entity() 
-{
-    UnloadTexture(mTexture);
-};
-
-bool const Entity::checkCollision(Entity* other) const
+bool const Entity::isColliding(Entity* other) const
 {
     float xDistance = fabs(mPosition.x - other->mPosition.x) - ((mWidth + other->mWidth) / 2.0f);
     float yDistance = fabs(mPosition.y - other->mPosition.y) - ((mHeight + other->mHeight) / 2.0f);
@@ -57,21 +28,23 @@ void const Entity::checkCollisionY(Entity *collidableEntities, int collidableEnt
         // STEP 1: For every entity that our player can collide with...
         Entity *collidableEntity = &collidableEntities[i];
         
-        if (checkCollision(collidableEntity))
+        if (isColliding(collidableEntity))
         {
             // STEP 2: Calculate the distance between its centre and our centre
             //         and use that to calculate the amount of overlap between
             //         both bodies.
             float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
-            float y_overlap = fabs(yDistance - (mHeight / 2.0f) - (collidableEntity->mHeight / 2.0f));
+            float yOverlap = fabs(yDistance - (mHeight / 2.0f) - (collidableEntity->mHeight / 2.0f));
             
             // STEP 3: "Unclip" ourselves from the other entity, and zero our
             //         vertical velocity.
-            if (mVelocity.y > 0) {
-                mPosition.y -= y_overlap;
+            if (mVelocity.y > 0) 
+            {
+                mPosition.y -= yOverlap;
                 mVelocity.y  = 0;
-            } else if (mVelocity.y < 0) {
-                mPosition.y += y_overlap;
+            } else if (mVelocity.y < 0) 
+            {
+                mPosition.y += yOverlap;
                 mVelocity.y  = 0;
             }
         }
@@ -84,9 +57,6 @@ void Entity::update(float deltaTime, Entity* collidableEntities, int collidableE
 
     // mPosition.x += mMovement.x * mSpeed * deltaTime;
     // mPosition.y += mMovement.y * mSpeed * deltaTime;
-
-    // mBody.x = mPosition.x; 
-    // mBody.y = mPosition.y;
 
     // Our character moves from left to right, so they need an initial velocity
     mVelocity.x = mMovement.x * mSpeed;
@@ -103,10 +73,13 @@ void Entity::render()
 {
     // Part of the texture to use for drawing (UV-coordinates)
     // in this case, the entire texture
-    Rectangle textureRect = { 0.0f, 0.0f, (float) mTexture.width, (float) mTexture.height };
+    Rectangle textureArea = {
+        0.0f, 0.0f,                                      // top-left corner
+        (float) mTexture.width, (float) mTexture.height  // bottom-right corner
+    };
 
     // Screen rectangle where drawing part of texture
-    Rectangle destinationRect = {
+    Rectangle destinationArea = {
         mPosition.x,
         mPosition.y,
         static_cast<float>(mWidth),
@@ -114,7 +87,10 @@ void Entity::render()
     };
 
     // Origin of TEXTURE
-    Vector2 textureOrigin = { (float) mTexture.width / 2.0f, (float) mTexture.height / 2.0f };
+    Vector2 objectOrigin = {
+        (float) mTexture.width / 2.0f,  // x-coordinate
+        (float) mTexture.height / 2.0f  // y-coordinate
+    };
 
-    DrawTexturePro(mTexture, textureRect, destinationRect, textureOrigin, mAngle, WHITE);
+    DrawTexturePro(mTexture, textureArea, destinationArea, objectOrigin, mAngle, WHITE);
 }
