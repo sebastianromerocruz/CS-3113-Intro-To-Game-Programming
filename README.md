@@ -1,116 +1,283 @@
-# Raylib Proof of Concept
-A sample raylib app based on CS3113's [**user input**](https://github.com/sebastianromerocruz/CS3113-material/tree/main/lectures/player-input) lecture.
+<h1 align=center>CS3113 <em>Introduction to Game Programming</em></h1>
 
-For Mac, the steps I had to take to get this to work were the following:
+<h2 align=center>New York University Tandon School of Engineering</h2>
 
-### Step 1: Install Homebrew (if not already installed)
-If you don't have Homebrew installed, you can install it by running this command in your terminal:
+<p align=center>
+    <a href="https://www.learncpp.com/"><img src="https://img.shields.io/badge/Language-C%2B%2B-yellow"></img></a>
+    <a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/IDE-Visual%20Studio%20Code-blue"></img></a>
+    <a href="https://www.opengl.org/"><img src="https://img.shields.io/badge/Library-raylib-white"></img></a>
+</p>
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+---
 
-### Step 2: Install CMake
-Once Homebrew is installed, you can install CMake by running the following command:
+### _Sections_
 
-```bash
-brew install cmake
-```
+1.  [**Lecture Notes**](#1)
+2.  [**Instructor and Course Assistant**](#2)
+3.  [**Class Information**](#3)
+4.  [**Description**](#4)
+5.  [**Objectives**](#5)
+6.  [**Computer/Software Requirements**](#6)
+7.  [**Grading Scheme**](#7)
+8.  [**Deadlines, Extensions, and Late Work Policy**](#8)
+    - [**Project Schedule**](#8-1)
+9. [**Getting Help and Slack**](#9)
+10. [**Moses Center Statement of Disability**](#10)
+11. [**Academic Integrity**](#11)
+    - [**Generative AI**](#11-1)
+    - [**Penalties**](#11-2)
 
-### Step 3: Verify CMake Installation
-To confirm that CMake was installed correctly, run:
+---
 
-```bash
-cmake --version
-```
+<a id="1"></a>
 
-This should return the installed version of CMake.
+### _Lecture Notes_
 
-### Step 4: Install Raylib
-After installing CMake, you can proceed with the Raylib instructions:
+<!-- 1. **Week 1**: The basics
+    1.  [**Introduction**](lectures/introduction/)
+    2.  [**Triangles**](lectures/triangle/)
+2. **Week 2**: Moving in video games
+    1.  [**You're getting old, Matrix**](lectures/matrices/)
+    2.  [**Transformations**](lectures/transformations/)
+3. **Week 3**: Applying art to our games
+    1.  [**Delta Time**](lectures/delta-time/)
+    2.  [**Textures**](lectures/textures/)
+4. **Week 4**: Player input and basic collision detection
+    1.  [**Player Input**](lectures/player-input/)
+    2.  [**Collision Detection**](lectures/collision-detection/) 
+5. **Week 5** Sprite Animation and Text and The Entity Class: 
+    1.  [**Sprite Animation and Text**](lectures/sprites-and-text/)
+    2.  [**Entities**](lectures/entities/)
+6. **Week 6**: Physics 1 and Physics 2
+    1. [**Physics: Gravity**](lectures/physics_1/)
+    2. [**Physics: Colliding with Different Kinds of Entities**](lectures/physics_2/) 
+7. **Week 7**: Music, sound effects, and basic enemy AI
+    1. [**Music and Sound Effects**](lectures/sound-fx/)
+    2. [**Basic Enemy AI**](lectures/enemy-ai/)
+8. **Week 8**: Map and stage building
+    1. [**Tilesets and Tilemaps**](lectures/maps/)
+    2. [**Scenes**](lectures/scenes/)
+9. **Weeks 9**: Special effects
+    1. [**Effects**](lectures/fx/)
+    2. [**Shaders**](lectures/shaders/)
+10. **Week 10**: [**Playtesting and publishing your game**](lectures/playtesting/) -->
 
-1. Clone Raylib:
+<sub>Released on each Friday day before class.</sub>
 
-   ```bash
-   git clone https://github.com/raysan5/raylib.git
-   cd raylib
-   ```
+<br>
 
-2. Build Raylib for `arm64` using CMake:
+<a id="2"></a>
 
-   ```bash
-   mkdir build
-   cd build
-   cmake -DCMAKE_OSX_ARCHITECTURES=arm64 ..
-   make
-   sudo make install
-   ```
+### _Instructor and Course Assistant_
 
-### Step 5: `makefile` Contents
+[**Sebastián Romero Cruz**](https://github.com/sebastianromerocruz)  _(They / Them)_
 
-You can create a `Makefile` to automate running our g++ command. Below is an example of how you can structure a `Makefile` to compile and run your Raylib application automatically:
+| **E-Mail**                                  | **Office Hours**                                                                                                     |
+|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| [**sebastian.romerocruz@nyu.edu**](mailto:src402@nyu.edu) | [**calendly**](https://calendly.com/profromerocruz) |
 
-```makefile
-# Compiler and Flags
-CXX = g++
-CXXFLAGS = -std=c++11 -arch arm64
+[**TBD**]()
 
-# Source Files
-SRCS = main.cpp
+| **E-Mail**                                  | **Office Hours**                                                                                                     |
+|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+| [**TBD**](mailto:) | TBD |
 
-# Output Executable
-TARGET = raylib_app
 
-# Raylib and Frameworks (macOS-specific)
-LIBS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+<br>
 
-# Build rule
-$(TARGET): $(SRCS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS) $(LIBS)
+<a id="3"></a>
 
-# Clean rule
-clean:
-	rm -f $(TARGET)
+### _Class Information_
 
-# Run rule (builds the target and then executes it)
-run: $(TARGET)
-	./$(TARGET)
-```
+- **Pre-Requisites**: [_**CS-UY 2124 Object-Oriented Programming (dē factō)**_](http://bulletin.engineering.nyu.edu/preview_course_nopop.php?catoid=15&coid=36541) (C- or better)
+- **Credits**: 3
 
-### How to use the Makefile:
+<a id="4"></a>
 
-1. **Compile the program:**
+### _Description_
 
-   ```bash
-   make
-   ```
+A programming intensive introduction to the creation of computer games. Using mostly two-dimensional 
+sprite-based programming, we examine and experiment with animation, physics, artificial intelligence 
+and audio. In addition, the course explores the mathematics of transformations (both 2D and 3D) and 
+the ways they may be represented.
 
-   This will build the program (if it's not already built).
+<br>
 
-2. **Run the program:**
+<a id="5"></a>
 
-   You can now use:
+### _Objectives_
 
-   ```bash
-   make run
-   ```
+This class is, fundamentally, an exercise in building your own game engine. You will learn about vectors, coordinate systems, sprites, collisions, physics, audio and handling input. This will all be done with C++ programming and utilizing the [**raylib**](https://www.raylib.com/) library, itself a cross-platform OpenGL wrapper. You will be able to create simple 2D games in your engine as well as gain exposure into 3D game programming.
 
-   This will first compile the program (if needed) and then execute it (`./raylib_app`).
+<br>
 
-3. **Clean the project:**
+<a id="6"></a>
 
-   You can still use:
+### _Computer/Software Requirements_
 
-   ```bash
-   make clean
-   ```
+You need to use either a Mac, Linux, or Windows computer. You do not need a powerful machine as we are
+not implementing anything super complicated. While I recommend the use of [**Visual Studio Code (VSCode)**](https://code.visualstudio.com/), you can use whatever you're most comfortable with.
 
-   This will remove the compiled executable.
+You will also need a [**Github**](https://github.com/) account!
 
-This setup lets you build and run the Raylib application with a single `make run` command.
+<br>
 
-### Sample Behaviour
+<a id="7"></a>
 
-![test](assets/test.gif)
+### _Grading Scheme_
 
-<sub>**Figure 1**: Expected behaviour. Use arrow keys to move the shield around and the `esc` to close the window.</sub>
+| **Item**                                                                | **Percentage** |
+|-------------------------------------------------------------------------|----------------|
+| **_Project 1_**: [**Draw a Simple 2D Scene**](assignments/project_1.md) | 10%            |
+| **_Project 2_**: [**Pong**](assignments/project_2.md)                   | 10%            |
+| **_Project 3_**: [**Lunar Lander**](assignments/project_3.md)           | 15%            |
+| **_Project 4_**: [**Rise of The AI**](assignments/project_4.md)         | 25%            |
+| **_Project 5_**: [**Students' Choice**]()                               | 30%            |
+| **_Classwork_**                                                         | 10%            |
+
+- **Projects** (90%)
+    - Assigned roughly every two weeks, these are programming projects based on class material and are to be _independently done_. 
+    - As you can see, this class is very project-heavy. What this means is that, while there are no exams nor quizzes, the grade of each of the projects has a relatively large impact on your overall course grade.
+    - This class assumes a solid understanding of the C++ language, including syntax, control flow, functional decomposition, and object-oriented programming. For this reason, we will not be grading you on the quality of your code. 
+    - However, as the raylib library is quite expansive and as there are multiple ways of approaching it, you are expected to _only use structures that we have learned in class_. For example, if we define a specific class during lecture, and we require its use in a project, **you must use it for full credit**. 
+    - Of course, if you are free to make your own modifications and create any auxiliary functions/classes/libraries to best suit your programming style. If you are ever unsure of whether you are allowed to use something in a homework project, please ask us first.
+    - Every assignment will have an "extra credit" portion. This will **add 5% to your final grade** at the end of the semester if you complete the extra credit portion of **at least 3 of the projects**. While 5% may not seem like a lot, it can mean the difference between two letter grades. This can be especially helpful later in the semester, when the projects become longer and more complex.
+
+- **Classwork** (10%) is based on 5-7 group assignments to be completed, as the name implies, during class. In order to get credit for these, you will need to:
+    1. Be there.
+    2. Complete the assignment with your team _before_ the end of class.
+    3. Complete the assignment using only structures learned in class.
+    4. Ensure that at least one person in your team shows the finished solution to the professor.
+
+As for your final letter grade, the following scale will be used:
+
+| **Letter Grade** | **A**  | **A-** | **B+** | **B** | **B-** | **C+** | **C** | **C-** | **D+** | **D** | **F** |
+|------------------|--------|--------|--------|-------|--------|--------|-------|--------|--------|-------|-------|
+| **Range**        | 93-100 | 90-92  | 87-89  | 83-86 | 80-82  | 77-79  | 73-76 | 70-72  | 67-69  | 60-66 | 0-60  |
+
+**There is no additional extra credit** in this course and the grades are **not curved**.
+
+<br>
+
+<a id="8"></a>
+
+### _Deadlines, Extensions, and Late Work Policy_
+
+- All projects are due at **11:59pm on Saturdays**.
+    - Late projects will have **10 points deducted per day**. 
+    - Late projects will not be accepted after **2 days**.
+    - Due by 11:59pm means your project was successfully pushed to GitHub _by that time_. This means that the version to be graded must be uploaded in both Brightspace and GitHub at that time. Start pushing your project at least an hour before the deadline.
+    - Projects received **1 minute late** are considered to be **a day** late.
+
+- If there are any issues with uploading your project, you must email me **24 hours prior to the due date**.
+    - While I check email regularly, do not expect a response over the weekend or close to deadlines.
+    - Your code must compile. Code that does not compile will receive a grade of 0.
+
+- You may ask for an extension for **any 2 of your 5 projects**. The extension policy varies per project:
+    - **Projects 1-3**: You may ask for an informal extension by asking Prof. Romero Cruz at least 72 hours (3 days) before the deadline. The exact length of the extension will be assigned on a case-by-case basis.
+    - **Project 4**: You _must_ contact the [**Office of Student Advocacy**]() in order to request an extension for this project, since its deadline coincides with the start of your work on your final project. If they approve it, then I will grant it with no problem at all.
+    - **Project 5**: Your final project is graded _during the last day of lecture_, when you will present it to the class. This means that no extensions are, in theory, possible. However, should an emergency arise, I can grant you an incomplete grade (`I`) for the time being and give you a short extension. This really is a last-resort option, so try to avoid it as best as possible.
+
+<a id="8-1"></a>
+
+#### Project Schedule
+
+| Project                 | Release Date | Due Date      |
+|-------------------------|--------------|---------------|
+| **Simple Scene**        | TBD          | TBD           |
+| **Pong**                | TBD          | TBD           |
+| **Lunar Lander**        | TBD          | TBD           |
+| **Platformer**          | TBD          | TBD           |
+| **Students' Choice**    | TBD          | TBD           |
+
+<br>
+
+<a id="9"></a>
+
+### _Getting Help and Slack_
+
+If you are emailing me for help with your projects, upload your entire project to github and email me with the link (I need to see everything so I can help you). Do not email screenshots of your code. 
+
+**Slack Server**: We will be using Slack to answer quick questions that you may have about the course throughout the semester; the join link will be provided during the first day of class. While I’m usually pretty lax in terms of behavior in our server, this server is still a university environment and should be treated as such. Be respectful to me, your course assistant, and to your fellow students. Please adhere to the following rules:
+
+- Do not post your homework assignment code, or anybody else's, on this server. Doing so will have you automatically banned and flagged for plagiarism. You may, however, share small code blocks that don’t give away your implementation in order to ask questions.
+
+- Please use your real first and last name as your name for easy identification.
+
+- While we aim to be as active as possible on this server, we may not always have time to respond to a question. Please respect the team’s time as you wait for somebody to answer your question. As a student of this class, you should aim to try to answer your classmates' questions as well, instead of waiting for me to answer them every single time.
+
+- This is a productivity server. While we encourage a relaxed atmosphere, let's stay on topic. For absolutely necessary off-topic content (it happens), post in `#off-topic`.
+
+- Use `#concepts-help` to ask questions that pertain to the lecture material in general (i.e. not specific to a project).
+
+- Use `#projects` to ask questions that pertain to the project concepts in general.
+
+- Do NOT use this server to rant about your performance in the class. This is a professional environment, and so such behavior will result in a ban. If you would like to discuss your grades, schedule office hours with me.
+
+- You may not invite any people outside of our class into this server.
+
+<br>
+
+<a id="10"></a>
+
+### Moses Center Statement of Disability
+
+If you are a student with a disability who is requesting accommodations, please contact New York University’s Moses Center for Students with Disabilities (CSD) at 212-998-4980 or **mosescsd@nyu.edu**​. You must be registered with CSD to receive accommodations. Information about the Moses Center can be found at [**www.nyu.edu/csd**](**www.nyu.edu/csd**)​. The Moses Center is located at 726 Broadway on the 3rd floor.
+
+Accommodations matter a _lot_ for this class, so please don't hesitate.
+
+<br>
+
+<a id="11"></a>
+
+### Academic Integrity
+
+NYU School of Engineering Policies and Procedures on Academic Misconduct [**Student Code of Conduct**](https://engineering.nyu.edu/life-tandon/student-life/student-advocacy/student-code-conduct).
+
+- **Introduction**: The Tandon School of Engineering encourages academic excellence in an environment that promotes honesty, integrity, and fairness, and students at the Tandon School of Engineering are expected to exhibit those qualities in their academic work. It is through the process of submitting their own work and receiving honest feedback on that work that students may progress academically. Any act of academic dishonesty is seen as an attack upon the School and will not be tolerated. Furthermore, those who breach the School’s rules on academic integrity will be sanctioned under this Policy. Students are responsible for familiarizing themselves with the School’s Policy on Academic Misconduct.
+
+- **Definition**: Academic dishonesty may include misrepresentation, deception, dishonesty, or any act of falsification committed by a student to influence a grade or other academic evaluation. Academic dishonesty also includes intentionally damaging the academic work of others or assisting other students in acts of dishonesty. Common examples of academically dishonest behavior include, but are not limited to, the following:
+
+    - **Cheating**: intentionally using or attempting to use unauthorized notes, books, electronic media, or electronic communications in an exam; talking with fellow students or looking at another person’s work during an exam; submitting work prepared in advance for an in-class examination; having someone take an exam for you or taking an exam for someone else; violating other rules governing the administration of examinations.
+
+    - **Fabrication**: including but not limited to, falsifying experimental data and/or citations.
+
+    - **Plagiarism**: intentionally or knowingly representing the words or ideas of another as one’s own in any academic exercise; failure to attribute direct quotations, paraphrases, or borrowed facts or information.
+
+    - **Unauthorized collaboration**: working together on work that was meant to be done individually.
+
+    - **Duplicating work**: presenting for grading the same work for more than one project or in more than one class, unless express and prior permission has been received from the course instructor(s) or research adviser involved.
+
+    - **Forgery**: altering any academic document, including, but not limited to, academic records, admissions materials, or medical excuses.
+
+<a id="11-1"></a>
+
+#### Generative AI
+
+The question on everybody's mind at this point is most likely this: can I use generative AI (gen AI) in this class? This short answer is that, most of the time, _no, you cannot_. The long answer is more nuanced, given the omnipresence and easy-of-use of tech like ChatGPT and Copilot. My general advice is to use your common sense: is gen AI doing most of the work for me? If so, then you are likely in the danger zone, at least as far as this course is concerned.
+
+In our opinion, we're not doing _anything_ in CS 3113 that warrants the use of gen AI. However, in order to minimize ambiguity, please abide by the following rules and you will be fine:
+
+1. **Do not enter the project prompts, class notes, or my code into ChatGPT**. While is isn't an act of plagiarism, it is unauthorized use of university (and our) materials.
+2. **Do not prompt gen AI with project requirements and use the resulting code**. _This is plagiarism_, full stop. Plus, even if you paraphrase our instructions instead of using our prompts directly, raylib is still a really large library; chances are that the code that gen AI will give you will be so irreconcilable with our course's that catching plagiarism will be a non-issue. Please, don't even think about it.
+3. **If you absolutely must use gen AI, do so smartly and let Prof. Romero Cruz know**. If you really want to use gen AI for something not directly related to or taught in the class (i.e. path-finding algorithms, etc.), do the following:
+    1. Ask Prof. Romero Cruz.
+    2. In your code, cite the use of whichever gen AI technology you used. For example:
+    ```c++
+    /*
+     * This algorithm was generated using ChatGPT using the following prompt:
+     *  ...
+     *  ...
+     **/
+    ```
+
+It's also worth remembering that a single 100-word ChatGPT-4 response uses the equivalent of [**a whole 500ml bottle of water**](https://www.techrepublic.com/article/generative-ai-data-center-water-use/), with [**ChatGPT-3 not doing much better**](https://arxiv.org/pdf/2304.03271). This may or may not sound like a lot, but with a little under a [**third of the world's population having no access to potable water**](https://www.unesco.org/reports/wwdr/en/2024/s), it might be worth reserving the use of generative AI for things that actually need it and not to generate code that will give you an F in this class.
+
+<a id="11-2"></a>
+
+#### Penalties
+
+If we determine that you plagiarized in any way, with or without gen AI, the following penalties will be handed out, with no exceptions:
+
+- The penalty for 1 instance of plagiarism is an 0 on that project and an academic dishonesty report to the CSE department.
+- The penalty for a 2nd instance of plagiarism will result in an F for the course and 2nd report to the CSE department.
