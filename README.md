@@ -107,7 +107,7 @@ the ways they may be represented.
 
 ### _Objectives_
 
-This class is, fundamentally, an exercise in building your own game engine. You will learn about vectors, coordinate systems, sprites, collisions, physics, audio and handling input. This will all be done with C++ programming and utilizing the [**raylib**](https://www.raylib.com/) library, itself a cross-platform OpenGL wrapper. You will be able to create simple 2D games in your engine as well as gain exposure into 3D game programming.
+You will learn about vector, coordinate systems, sprites, animation, collisions, physics, map-building, simple enemy AI, audio and handling user input. This will all be done with C++ programming and utilizing the [**raylib**](https://www.raylib.com/) library, itself a cross-platform OpenGL wrapper. You will be able to create simple 2D games in your engine as well as gain exposure into 3D game programming.
 
 <br>
 
