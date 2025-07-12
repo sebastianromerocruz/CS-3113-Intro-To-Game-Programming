@@ -122,6 +122,8 @@ not implementing anything super complicated. While I recommend the use of [**Vis
 
 You will also need a [**Github**](https://github.com/) account!
 
+[**Project Setup Instructions**](resources/SET_UP.md)
+
 <br>
 
 <a id="7"></a>
