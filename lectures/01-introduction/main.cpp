@@ -10,8 +10,6 @@ constexpr int SCREEN_WIDTH        = 800 * 1.5f,
 
 // Global Variables
 AppStatus gAppStatus   = RUNNING;
-float gPreviousTicks   = 0.0f,
-      gTimeAccumulator = 0.0f;
 
 // Function Declarations
 void initialise();
@@ -59,6 +57,8 @@ int main(void)
         update();
         render();
     }
+
+    shutdown();
 
     return 0;
 }

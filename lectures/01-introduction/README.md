@@ -1,10 +1,10 @@
 <h2 align=center>Week 01</h2>
 
-<h1 align=center>Hello, Raylib</h1>
+<h1 align=center>Hello, Raylib!</h1>
 
-<h3 align=center>1 Red Wolf Moon, Imperial Year MMXXIV</h3>
+<h3 align=center>V Horsebow Moon, Imperial Year MMXXV</h3>
 
-<p align=center><strong><em>Song of the day</strong>: <a href="https://www.youtube.com/watch?v=phT2MJAn1KY&ab_channel=TOMORROWXTOGETHER-Topic"><strong><u>APT</u></strong></a> by ROSÉ & Bruno Mars (2024).</em></p>
+<p align=center><strong><em>Song of the day</strong>: <a href="https://youtu.be/Soy4jGPHr3g?si=3OzzGXAaF8yi1u8q"><strong><u>テトリス (Tetris feat. 重音テト [Kasane Teto])</u></strong></a> by 柊マグネタイト (Hiiragi Magnetite) (2024).</em></p>
 
 ---
 
@@ -14,6 +14,11 @@
 2. [**Why raylib?**](#2)
 3. [**Hello, Raylib!**](#3)
     1. [**`main`**](#3-1)
+    2. [**`initialise`**](#3-2)
+    3. [**`processInput`**](#3-3)
+    4. [**`update`**](#3-4)
+    5. [**`render`**](#3-5)
+    6. [**`shutdown`**](#3-6)
 
 ---
 
@@ -107,8 +112,6 @@ constexpr int SCREEN_WIDTH  = 800,
 
 // Global Variables
 AppStatus gAppStatus   = RUNNING;
-float gPreviousTicks   = 0.0f,
-      gTimeAccumulator = 0.0f;
 
 // Function Declarations
 void initialise();
@@ -156,6 +159,8 @@ int main(void)
         update();
         render();
     }
+
+    shutdown();
 
     return 0;
 }
@@ -281,11 +286,11 @@ In general, they are considered to be a better way of handling logic than boolea
 
 <a id="3-2"></a>
 
-## `initialise`
+### `initialise`
 
 The first function we find in our `main` is that of `initialise`. As previously alluded to, this function takes care of a lot of the "housecleaning" necessary for your game to run smoothly. In general, this will involve the following:
 
-1. **Initialising a window**. I mean this literally, too. Computers don't just generate windows just because we click on icons. We have to _tell_ our operating system, and our graphics card by extension, to dedicate a portion our the screen to what we want to display. In raylib, this is relatively simple, using the following line:
+1. **Initialising a window and OpenGL context**. I mean this literally, too. Computers don't just generate windows just because we click on icons. We have to _tell_ our operating system, and our graphics card by extension, to dedicate a portion our the screen to what we want to display. In raylib, this is relatively simple, using the following line:
     ```cpp
     InitWindow(
         SCREEN_WIDTH,   // in pixels
@@ -294,4 +299,92 @@ The first function we find in our `main` is that of `initialise`. As previously 
     );
     ```
     Keep in mind that [**1 pixel is equivalent to about 26.5 mm**](https://www.unitconverters.net/typography/pixel-x-to-centimeter.htm).
-2. **Initialising the game's camera**.
+    - You can think of an **OpenGL context** as a structure that stores the state, functions, and resources needed for rendering graphics using OpenGL.
+2. **Set the game's parameters**. This can be a number of things, but for now, we're only setting the game's frame rate. We'll explore frame rates, what they actually do and how they work later in the semester, but for now, all you need to know is that this is how you set it:
+    ```cpp
+    SetTargetFPS(FPS);
+    ```
+3. **Initialising the game's camera**. We won't do that for a while, but this is certainly when we would do it.
+4. **Initialising any game objects necessary for the scene**. Loading screens are basically there to give your game time to put everything that is supposed to be in your game where and how its supposed to be. Before any updates happen, we first have to make sure that they exist.
+
+<a id="3-3"></a>
+
+### `processInput`
+
+Our game is pretty empty at the moment, so all we have in terms of interactivity is the ability to close the window. That is precisely what this selection statement is checking for:
+
+```cpp
+void processInput() 
+{
+    if (WindowShouldClose()) gAppStatus = TERMINATED;
+}
+```
+
+According to the official [**raylib docs**](https://www.raylib.com/cheatsheet/cheatsheet.html), `WindowShouldClose` will...
+
+```c
+// Check if application should close (KEY_ESCAPE pressed or windows close icon clicked)
+bool WindowShouldClose(void);
+```
+
+Now, remember that `processInput` is being checked _every single frame_, so this function is constantly _listening_ for the user to perform either of those actions. In general, that will be the case for all user input functions, though there are some important distinctions we will have to consider when we get to that point in the course.
+
+Notice, too, that _if_ the player does close the window, **`processInput` does not close the game itself**—it only marks it "eventual" termination. Why? Remember—`processInput` must do only that: register a user's input and keep track of it. It'll up to other functions within your game to do something with that input.
+
+<a id="3-4"></a>
+
+### `update`
+
+Since there is no actual game to speak of in this current application of ours, it makes sense for `update` to be empty; this function is the one to update all game logic given the game's current state and the user's input. We have neither, so we can't do much.
+
+<a id="3-5"></a>
+
+### `render`
+
+`render`, on the other hand, still has some tasks to perform, in spite there not being much to actually draw. Remember that, fundamentally, raylib and OpenGL are _computer graphics libraries_. Their sole job is to take pixel data and run it through your GPU in order to display it on the screen. That means that even a simple job like a screen with a solid colour has to be explicitly requested.
+
+In general, we will always begin our `render` function with the following line:
+
+```C
+void BeginDrawing(void);  // Setup canvas (framebuffer) to start drawing
+```
+
+And end it with the following line:
+
+```C
+void EndDrawing(void);  // End canvas drawing and swap buffers (double buffering)
+```
+
+What exactly does this mean? Consider the following question: what is the most effective way to draw data onto the screen?
+
+1. Bit-by-bit? or...
+2. By chunks?
+
+Loading and rendering data is a fairly expensive operation, so your computer will usually load a sizable chunk from the source to render instead of pulling a individual bits. A **buffer** is essentially that chunk of data, is reserved by your computer to do basically anything—play music, videos, read files, you name it. In terms of computer graphics, what our computers do is that they _load the entire image to be drawn into a buffer (the `framebuffer` in our case), and **only then**` does it draw it on screen_. [**Gulraiz Noor Bari**](https://medium.com/@gulraiznoorbari/buffer-swapping-v-sync-explained-a-beginners-journey-into-the-c-big-boys-league-0a5b53920152) on Medium gives a really good analogy to what happens next:
+
+> Imagine you’re flipping through a sketchpad to show someone your animation. Rather than drawing on the same page they’re looking at (which would look messy), you draw on the next page while they view the current one. Once you’re done, you flip the page — smooth transition, no mess. That’s double buffering.
+>
+> When rendering graphics (especially with OpenGL), you’re not drawing directly to the screen. Instead, you use two frame buffers:
+>
+> - **Back Buffer**
+> - **Front Buffer**
+
+The buffer that we are filling up during the course of `render` is the **back buffer**, and the frame being currently shown on screen is the **front buffer**. What we meant by _buffer swapping_ is literally flipping them like you would between pages of an animation book:
+
+> 1. The newly drawn frame (in the back buffer) becomes visible.
+> 2. The old frame (in the front buffer) is now free to be drawn on for the next update.
+
+<a id="3-6"></a>
+
+### `shutdown()`
+
+There won't be much here for a while besides the following line:
+
+```cpp
+void shutdown() 
+{ 
+    CloseWindow(); // Close window and OpenGL context
+}
+```
+
+Though eventually we will be releasing some manually allocated data as well.

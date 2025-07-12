@@ -33,6 +33,8 @@
 
 ### _Lecture Notes_
 
+1. [**The Basics: _Hello, Raylib!_**](lectures/01-introduction)
+
 <!-- 1. **Week 1**: The basics
     1.  [**Introduction**](lectures/introduction/)
     2.  [**Triangles**](lectures/triangle/)
