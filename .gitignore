@@ -152,3 +152,5 @@ $RECYCLE.BIN/
 *.pdf
 lectures/*
 !lectures/01-introduction
+
+exercises/*
