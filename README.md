@@ -157,7 +157,7 @@ As for your final letter grade, the following scale will be used:
 
 | **Letter Grade** | **A**  | **A-** | **B+** | **B** | **B-** | **C+** | **C** | **C-** | **D+** | **D** | **F** |
 |------------------|--------|--------|--------|-------|--------|--------|-------|--------|--------|-------|-------|
-| **Range**        | 95-100 | 90-94  | 87-89  | 83-86 | 80-82  | 77-79  | 73-76 | 70-72  | 67-69  | 60-66 | 0-60  |
+| **Range**        | ≥95 | ≥90  | ≥87  | ≥83 | ≥80  | ≥77  | ≥73 | ≥70  | ≥67  | ≥60 | ≥0  |
 
 **There is no additional extra credit** in this course and the grades are **not curved**.
 
