@@ -54,6 +54,11 @@ cmake --version
 pkg-config --modversion raylib
 ```
 
+if you get "zsh: command not found: pkg-config", then install it:
+```bash
+brew install pkg-config
+```
+
 You should see version numbers for both `cmake` and `raylib`.
 
 <br>
