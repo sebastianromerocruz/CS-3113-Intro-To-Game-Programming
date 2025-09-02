@@ -1,4 +1,4 @@
-<h1 align=center>CS3113 <em>Introduction to Game Programming</em></h1>
+<h1 align=center>CS-UY 3113 <em>Introduction to Game Programming</em></h1>
 
 <h2 align=center>New York University Tandon School of Engineering</h2>
 
@@ -157,7 +157,7 @@ As for your final letter grade, the following scale will be used:
 
 | **Letter Grade** | **A**  | **A-** | **B+** | **B** | **B-** | **C+** | **C** | **C-** | **D+** | **D** | **F** |
 |------------------|--------|--------|--------|-------|--------|--------|-------|--------|--------|-------|-------|
-| **Range**        | 93-100 | 90-92  | 87-89  | 83-86 | 80-82  | 77-79  | 73-76 | 70-72  | 67-69  | 60-66 | 0-60  |
+| **Range**        | 95-100 | 90-94  | 87-89  | 83-86 | 80-82  | 77-79  | 73-76 | 70-72  | 67-69  | 60-66 | 0-60  |
 
 **There is no additional extra credit** in this course and the grades are **not curved**.
 
@@ -258,11 +258,11 @@ NYU School of Engineering Policies and Procedures on Academic Misconduct [**Stud
 
 #### Generative AI
 
-The question on everybody's mind at this point is most likely this: can I use generative AI (gen AI) in this class? This short answer is that, most of the time, _no, you cannot_. The long answer is more nuanced, given the omnipresence and easy-of-use of tech like ChatGPT and Copilot. My general advice is to use your common sense: is gen AI doing most of the work for me? If so, then you are likely in the danger zone, at least as far as this course is concerned.
+The question on everybody's mind at this point is most likely this: can I use generative AI (gen AI) in this class? This short answer is that, most of the time, _no, you cannot_. The long answer is more nuanced, given the omnipresence and easy-of-use of tech like ChatGPT and Copilot. My general advice is to use your common sense: _is gen AI doing most of the work for you_? If so, then you are likely in the danger zone, at least as far as this course is concerned.
 
 In our opinion, we're not doing _anything_ in CS 3113 that warrants the use of gen AI. However, in order to minimize ambiguity, please abide by the following rules and you will be fine:
 
-1. **Do not enter the project prompts, class notes, or my code into ChatGPT**. While is isn't an act of plagiarism, it is unauthorized use of university (and our) materials.
+1. **Do not enter the project prompts, class notes, or my code into any gen AI engine**. While is isn't an act of plagiarism, it is unauthorized use of university (and our) materials.
 2. **Do not prompt gen AI with project requirements and use the resulting code**. _This is plagiarism_, full stop. Plus, even if you paraphrase our instructions instead of using our prompts directly, raylib is still a really large library; chances are that the code that gen AI will give you will be so irreconcilable with our course's that catching plagiarism will be a non-issue. Please, don't even think about it.
 3. **If you absolutely must use gen AI, do so smartly and let Prof. Romero Cruz know**. If you really want to use gen AI for something not directly related to or taught in the class (i.e. path-finding algorithms, etc.), do the following:
     1. Ask Prof. Romero Cruz.
@@ -275,7 +275,7 @@ In our opinion, we're not doing _anything_ in CS 3113 that warrants the use of g
      **/
     ```
 
-It's also worth remembering that a single 100-word ChatGPT-4 response uses the equivalent of [**a whole 500ml bottle of water**](https://www.techrepublic.com/article/generative-ai-data-center-water-use/), with [**ChatGPT-3 not doing much better**](https://arxiv.org/pdf/2304.03271). This may or may not sound like a lot, but with a little under a [**third of the world's population having no access to potable water**](https://www.unesco.org/reports/wwdr/en/2024/s), it might be worth reserving the use of generative AI for things that actually need it and not to generate code that will give you an F in this class.
+It's also worth remembering that a single 100-word ChatGPT-4 response uses the equivalent of [**a whole 500ml bottle of water**](https://www.techrepublic.com/article/generative-ai-data-center-water-use/), with [**ChatGPT-3 not doing much better**](https://arxiv.org/pdf/2304.03271). This may or may not sound like a lot, but with a [**quarter of the world's population having no access to potable water**](https://www.who.int/news/item/26-08-2025-1-in-4-people-globally-still-lack-access-to-safe-drinking-water---who--unicef), it might be worth reserving the use of generative AI for things that actually need it and not to generate code that will give you an F in this class.
 
 <a id="11-2"></a>
 
