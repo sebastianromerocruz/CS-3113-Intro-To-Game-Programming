@@ -34,6 +34,7 @@
 ### _Lecture Notes_
 
 1. [**The Basics: _Hello, Raylib!_**](lectures/01-introduction)
+<!-- 1. [**Transformations**](lectures/02-transformations) -->
 
 <!-- 1. **Week 1**: The basics
     1.  [**Introduction**](lectures/introduction/)
