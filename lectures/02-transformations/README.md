@@ -17,7 +17,11 @@
 2. [**Transformations**](#2)
     - [**Scaling**](#2-1)
     - [**Rotation**](#2-2)
+    - [**Translation**](#2-3)
 3. [**Transformations in Raylib**](#3)
+    - [**Scaling**](#3-1)
+    - [**Rotation**](#3-2)
+    - [**Translation**](#3-3)
 
 ---
 
