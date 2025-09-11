@@ -8,7 +8,7 @@ enum Direction { LEFT, RIGHT };       // turning left or right?
 constexpr int SCREEN_WIDTH        = 800 * 1.5f,
               SCREEN_HEIGHT       = 450 * 1.5f,
               FPS                 = 60,
-              PLAYER_SIZE         = 100;
+              SIZE         = 100;
 
 constexpr float LIMIT_ANGLE = 20.0f;  // when turning directions will flip
 
@@ -30,13 +30,17 @@ void shutdown();
 #include <stdlib.h>
 
 
+// You can ignore this function, it's just to get nice colours :)
 Color ColorFromHex(const char *hex)
 {
     // Skip leading '#', if present
     if (hex[0] == '#') hex++;
 
     // Default alpha = 255 (opaque)
-    unsigned int r = 0, g = 0, b = 0, a = 255;
+    unsigned int r = 0, 
+                 g = 0, 
+                 b = 0, 
+                 a = 255;
 
     // 6‑digit form: RRGGBB
     if (sscanf(hex, "%02x%02x%02x", &r, &g, &b) == 3) {
