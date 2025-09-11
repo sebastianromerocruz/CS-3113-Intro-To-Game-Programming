@@ -10,7 +10,7 @@
     - [**Constants**](#2-1)
     - [**Oscillating Behaviour**](#2-2)
     - [**Implementation Details**](#2-3)
-3. 
+3. [**How and What to Submit**](#3)
 
 ---
 
