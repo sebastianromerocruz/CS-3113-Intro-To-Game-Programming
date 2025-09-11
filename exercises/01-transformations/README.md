@@ -1,4 +1,4 @@
-<h2 align=center>Week 02</h2>
+<!-- <h2 align=center>Week 02</h2>
 
 <h1 align=center>Transformations: <em>Funny Heartbeat</em></h1>
 
@@ -18,7 +18,7 @@
 
 ## The Problem
 
-If you run the [**`main.cpp` file**](exercises/01-transformations/main.cpp) associated with this exercise, you will see the following triangle on your window:
+If you run the [**`main.cpp` file**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/blob/main/exercises/01-transformations/main.cpp) associated with this exercise, you will see the following triangle on your window:
 
 <a id="fg-1"></a>
 
@@ -63,7 +63,7 @@ In other words:
 
 ### Constants
 
-You will notice that you file has the following constants:
+You will notice that your file has the following constants:
 
 ```c++
 constexpr float RADIUS          = 100.0f, // radius of the orbit
@@ -72,7 +72,7 @@ constexpr float RADIUS          = 100.0f, // radius of the orbit
                 BASE_SIZE       = 50,     // the size of the triangle when it's not being scaled
                 MAX_AMPLITUDE   = 10.0f,  // by how much the triangle will be expanding/contracting
                 PULSE_SPEED     = 100.0f, // how fast the triangle is going to be "pulsing"
-                PULSE_INCREMENT = 10.0f;  // the current value we're scaling by
+                PULSE_INCREMENT = 10.0f;  // the current value we're scaling by, related to the period
 ```
 
 While using these constants is not strictly necessary, reading up on what the each do will definitely be helpful.
@@ -81,7 +81,7 @@ While using these constants is not strictly necessary, reading up on what the ea
 
 ### Oscillating Behaviour
 
-During lecture, we achieved the "metronomic" behaviour by having a limit and reversing the direction of the transformation every time that limit was reached. While this is a perfectly fine way of achieving oscillating behaviour, it's a little clunky. To give you a hint for a better way of going about it, check out the following:
+During lecture, we achieved the [**"metronomic" behaviour**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/tree/main/lectures/02-transformations#rotation-1) by having a limit and reversing the direction of the transformation every time that limit was reached. While this is a perfectly fine way of achieving oscillating behaviour, it's a little clunky. To give you a hint for a better way of going about it, check out the following:
 
 <a id="fg-3"></a>
 
@@ -111,7 +111,7 @@ During lecture, we achieved the "metronomic" behaviour by having a limit and rev
 
 ### Implementation Details
 
-Unlike the transformations we did in class, where we kept incrementing the value of `gAngle`/`gScalingFactor`/`gPosition.x`/`gPosition.y`, our behaviour is no longer linear at all. In other words, the values for all four of these variables will have to be calculated from scratch _every single frame_. However, that does not mean that you can't have another value constantly increasing as the frames go by. Think of how [**these types of functions work**](#fg-4), and how `x` changes of over time.
+Unlike the transformations we did in class, where we kept incrementing the value of `gAngle`/`gScalingFactor`/`gPosition.x`/`gPosition.y`, our behaviour is no longer linear at all. In other words, the values for all four of these variables will have to be calculated _from scratch every single frame_. However, that does not mean that you can't have another value constantly increasing as the frames go by. Think of how [**these types of functions work**](#fg-4), and how `x` changes of over time.
 
 <br>
 
@@ -141,4 +141,4 @@ Unlike the transformations we did in class, where we kept incrementing the value
     <sub>
         <strong>Figures V & VI</strong>: How to submit your work.
     </sub>
-</p>
+</p> -->
