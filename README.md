@@ -34,7 +34,7 @@
 ### _Lecture Notes_
 
 1. [**The Basics: _Hello, Raylib!_**](lectures/01-introduction)
-<!-- 2. [**Transformations**](lectures/02-transformations) -->
+2. [**Transformations**](lectures/02-transformations)
 
 <!-- 1. **Week 1**: The basics
     1.  [**Introduction**](lectures/introduction/)
@@ -79,11 +79,13 @@
 |---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
 | [**sebastian.romerocruz@nyu.edu**](mailto:src402@nyu.edu) | [**calendly**](https://calendly.com/profromerocruz) |
 
-[**TBD**]()
+[**CA: Eric Zhao**]()
 
-| **E-Mail**                                  | **Office Hours**                                                                                                     |
-|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| [**TBD**](mailto:) | TBD |
+| **E-Mail**                                  | **Office Hours**                                                     | **Location** |
+|---------------------------------------------|----------------------------------------------------------------------|--------------|
+| [**ez2346@nyu.edu**](mailto:ez2346@nyu.edu) | **Monday:** 4:00 PM - 6:20 PM<br>**Tuesday:** 4:00 PM - 5:00 PM<br>**Friday:** 12:00 PM (Noon) - 2:00 PM | Jacobs Hall 223, Room F |
+
+*If you need to email Eric for anything related to this class, please include the course number (CS3113) and your first and last name in the subject line.*
 
 
 <br>
@@ -180,20 +182,20 @@ As for your final letter grade, the following scale will be used:
 
 - You may ask for an extension for **any 2 of your 5 projects**. The extension policy varies per project:
     - **Projects 1-3**: You may ask for an informal extension by asking Prof. Romero Cruz at least 72 hours (3 days) before the deadline. The exact length of the extension will be assigned on a case-by-case basis.
-    - **Project 4**: You _must_ contact the [**Office of Student Advocacy**]() in order to request an extension for this project, since its deadline coincides with the start of your work on your final project. If they approve it, then I will grant it with no problem at all.
+    - **Project 4**: You _must_ contact the [**Office of Student Advocacy**](https://engineering.nyu.edu/life-tandon/student-life/student-advocacy) in order to request an extension for this project, since its deadline coincides with the start of your work on your final project. If they approve it, then I will grant it with no problem at all.
     - **Project 5**: Your final project is graded _during the last day of lecture_, when you will present it to the class. This means that no extensions are, in theory, possible. However, should an emergency arise, I can grant you an incomplete grade (`I`) for the time being and give you a short extension. This really is a last-resort option, so try to avoid it as best as possible.
 
 <a id="8-1"></a>
 
 #### Project Schedule
 
-| Project                 | Release Date | Due Date      |
-|-------------------------|--------------|---------------|
-| **Simple Scene**        | TBD          | TBD           |
-| **Pong**                | TBD          | TBD           |
-| **Lunar Lander**        | TBD          | TBD           |
-| **Platformer**          | TBD          | TBD           |
-| **Students' Choice**    | TBD          | TBD           |
+| Project                 | Release Date        | Due Date                   |
+|-------------------------|---------------------|----------------------------|
+| **Simple Scene**        | Friday, Sept 19     | Saturday, Sept 27 11:59PM  |
+| **Pong**                | Friday, Sept 26     | Saturday, Oct  11 11:59PM  |
+| **Lunar Lander**        | Friday, Oct  10     | Saturday, Oct  25 11:59PM  |
+| **Rise of AI**          | Friday, Oct  24     | Saturday, Nov  8 11:59PM   |
+| **Students' Choice**    | Friday, Nov  7      | Saturday, Dec  5 11:59PM   |
 
 <br>
 
@@ -227,7 +229,7 @@ If you are emailing me for help with your projects, upload your entire project t
 
 ### Moses Center Statement of Disability
 
-If you are a student with a disability who is requesting accommodations, please contact New York University’s Moses Center for Students with Disabilities (CSD) at 212-998-4980 or **mosescsd@nyu.edu**​. You must be registered with CSD to receive accommodations. Information about the Moses Center can be found at [**www.nyu.edu/csd**](**www.nyu.edu/csd**)​. The Moses Center is located at 726 Broadway on the 3rd floor.
+If you are a student with a disability who is requesting accommodations, please contact New York University’s Moses Center for Students with Disabilities (CSD) at 212-998-4980 or **mosescsd@nyu.edu**​. You must be registered with CSD to receive accommodations. Information about the Moses Center can be found at [**Moses Center for Accessibility and Inclusive Culture**](https://www.nyu.edu/life/community-flourishing/centers-and-communities/accessibility.html)​. The Moses Center is located at 726 Broadway on the 3rd floor.
 
 Accommodations matter a _lot_ for this class, so please don't hesitate.
 
@@ -284,5 +286,5 @@ It's also worth remembering that a single 100-word ChatGPT-4 response uses the e
 
 If we determine that you plagiarized in any way, with or without gen AI, the following penalties will be handed out, with no exceptions:
 
-- The penalty for 1 instance of plagiarism is an 0 on that project and an academic dishonesty report to the CSE department.
+- The penalty for 1st instance of plagiarism is an 0 on that project and an academic dishonesty report to the CSE department.
 - The penalty for a 2nd instance of plagiarism will result in an F for the course and 2nd report to the CSE department.
