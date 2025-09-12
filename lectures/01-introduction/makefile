@@ -11,8 +11,8 @@ CXXFLAGS = -std=c++11
 
 ifeq ($(UNAME_S), Darwin)
     # macOS configuration
-    CXXFLAGS += -arch arm64
-    LIBS = -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
+    CXXFLAGS += -arch arm64 -I/opt/homebrew/opt/raylib/include
+    LIBS = -L/opt/homebrew/opt/raylib/lib -lraylib -framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo
     EXEC = ./$(TARGET)
 else ifneq (,$(findstring MINGW,$(UNAME_S)))
     # Windows configuration (assumes raylib is in C:/raylib)
