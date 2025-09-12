@@ -1,4 +1,4 @@
-<!-- <h2 align=center>Week 02</h2>
+<h2 align=center>Week 02</h2>
 
 <h1 align=center>Transformations: <em>Funny Heartbeat</em></h1>
 
@@ -141,4 +141,4 @@ Unlike the transformations we did in class, where we kept incrementing the value
     <sub>
         <strong>Figures V & VI</strong>: How to submit your work.
     </sub>
-</p> -->
+</p>
