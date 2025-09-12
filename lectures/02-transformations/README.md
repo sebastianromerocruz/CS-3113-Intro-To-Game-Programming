@@ -131,7 +131,7 @@ Last but not least we have **translation** which, in a way, is the most straight
     </sub>
 </p>
 
-Note that, unlike scaling and rotation, translation involves _addition_ as opposed to multiplication. Because of this applying all three transformations consecutively is actually quite involved. Like I said, though, raylib allows to sort of bypass all of those difficulties in favour a much simplier (if less flexible) interface.
+Note that, unlike scaling and rotation, translation involves _addition_ as opposed to multiplication. Because of this applying all three transformations consecutively is actually quite involved. Like I said, though, raylib allows us to sort of bypass all of those difficulties in favour a much simplier (if less flexible) interface.
 
 <br>
 
@@ -162,7 +162,7 @@ Running our program, we should see the following:
     </sub>
 </p>
 
-Fascinating! Now, why are triangles the building blocks of game programming? Well, triangles are the polygons with the least amount of sides possible. Therefore, one can theoretically build literally any shape by creating a **mesh** make out of triangles:
+Fascinating! Now, why are triangles the building blocks of game programming? Well, triangles are the polygons with the least amount of sides possible. Therefore, one can theoretically build literally any shape by creating a **mesh** made out of triangles:
 
 <a id="fg-5"></a>
 
@@ -184,7 +184,7 @@ void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color col
 ```
 
 One-by-one, we have:
-    - **`Vector2 center`**: A raylib object representing the location of the oirigin of your polygon, represented itself by a vector. Note that _coordinates in raylib are measued from the top-left corner_. Therefore, the centre of the screen is _not_ (0.0, 0.0), but rather (Width<sub><em>window</em></sub> / 2, Height<sub><em>window</em></sub> / 2).
+    - **`Vector2 center`**: A raylib object representing the location of the origin of your polygon, represented itself by a vector. Note that _coordinates in raylib are measued from the top-left corner_. Therefore, the centre of the screen is _not_ (0.0, 0.0), but rather (Width<sub><em>window</em></sub> / 2, Height<sub><em>window</em></sub> / 2).
     - **`int sides`**: This value indicates which `n`-polygon we want to draw. In our case, `n` = 3, for a triangle.
     - **`int radius`**: This integer represents the length of each of the polygon's sides. In other words, this parameter represents our _scale factor_. Because this factor is scaling our polygon in every direction equally, we can only perform uniform scaling with this function (which is enough for now).
     - **`float rotation`**: This, in turn, is takes care of our rotation. Note that, for this function, all rotations are done _about the z-axis_ (that is, the axis that goes through the screen).
