@@ -152,6 +152,5 @@ $RECYCLE.BIN/
 *.pdf
 lectures/*
 !lectures/01-introduction
-!lectures/02-transformations
 
-exercises/*
+exercises/01-transformations/SOLUTION.cpp

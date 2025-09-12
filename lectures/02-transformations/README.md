@@ -324,6 +324,19 @@ void update()
 }
 ```
 
+<a id="fg-8"></a>
+
+<p align=center>
+    <img src="assets/all.gif">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure VII</strong>: Rotation, scaling, and translation in action.
+    </sub>
+</p>
+
 In the future, we will have vectors for all three transformations, not just for translation. But this is enough for a quick proof-of-concept. 
 
 Congrats! We've got pixels moving on the screen! Another _huge_ step for our game engine.
