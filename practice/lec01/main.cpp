@@ -4,7 +4,7 @@ enum AppStatus { TERMINATED, RUNNING };
 
 constexpr int SCREEN_WIDTH = 800;
 constexpr int SCREEN_HEIGHT = 600;
-constexpr int FPS = 60;
+constexpr int FPS = 600;
 
 AppStatus gAppStatus = RUNNING;
 
@@ -15,6 +15,8 @@ void initialise() {
 
 void processInput() {
     if (WindowShouldClose()) gAppStatus = TERMINATED;
+    if (IsKeyPressed(KEY_ESCAPE)) gAppStatus = TERMINATED;
+    if (IsKeyDown(KEY_LEFT_SUPER) && IsKeyPressed(KEY_W)) gAppStatus = TERMINATED;
 }
 
 void update() {
@@ -25,7 +27,7 @@ void update() {
 
 void render() {
     BeginDrawing();
-    ClearBackground(RAYWHITE);
+    ClearBackground(PURPLE);
     EndDrawing();
 }
 
