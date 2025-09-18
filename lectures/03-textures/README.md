@@ -20,6 +20,8 @@
         3. [**_Determine The Target Game Origin Inside The **Destination** Rectangle_**](#2-2-3)
         4. [**_Draw/Render The Texture!_**](#2-2-4)
 3. [**Delta Time**](#3)
+    1. [**Implementation**](#3-1)
+    2. [**Calculation**](#3-2)
 
 ---
 
