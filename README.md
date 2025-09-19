@@ -35,6 +35,7 @@
 
 1. [**The Basics: _Hello, Raylib!_**](lectures/01-introduction)
 2. [**Transformations**](lectures/02-transformations)
+3. [**Texture**](lectures/03-textures/)
 
 <!-- 1. **Week 1**: The basics
     1.  [**Introduction**](lectures/introduction/)

@@ -29,7 +29,7 @@
 
 ## Some Housecleaning
 
-Remember that function I inluded in [**last week's `main`**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/blob/main/lectures/02-transformations/main.cpp) which converted hex codes to raylib `Color` objects? While it certainly is a handy function to have around, I wouldn't consider it something so essential so as to have it in our `main.cpp` file. In cases like these, we tend to place these function in some other file and then import that file to have access to their functions. I have done just that in this week's folder structure. Check out the tree structure of today's lecture:
+Remember that function I included in [**last week's `main`**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/blob/main/lectures/02-transformations/main.cpp) which converted hex codes to raylib `Color` objects? While it certainly is a handy function to have around, I wouldn't consider it something so essential so as to have it in our `main.cpp` file. In cases like these, we tend to place these function in some other file and then import that file to have access to their functions. I have done just that in this week's folder structure. Check out the tree structure of today's lecture:
 
 ```
 .
@@ -132,7 +132,7 @@ DrawPoly(
 );
 ```
 
-Well, gone are those good old days! While lots of good games have been made with just solid colour shapes, our goal this semester is to make games that use **textures** we can and use. A texture to any 2D image applied to either 3D models or surfaces that gies them a level of visual detail and realism. Naturally, this process comes with its own bit of setup, so that's what we'll be going through today.
+Well, gone are those good old days! While lots of good games have been made with just solid colour shapes, our goal this semester is to make games that use **textures** we can and use. A texture to any 2D image applied to either 3D models or surfaces that gives them a level of visual detail and realism. Naturally, this process comes with its own bit of setup, so that's what we'll be going through today.
 
 <a id="2-1"></a>
 
