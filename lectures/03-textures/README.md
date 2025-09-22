@@ -5,7 +5,7 @@
 <h3 align=center>XIX Horsebow Moon, Imperial Year MMXXV</h3>
 
 <p align=center><strong>Song of the day</strong>:</p>
-<p align=center><em><a href="https://youtu.be/zwYzfZEu0OM?si=R7fnpkVQccWpBsf4"><strong><u>Red Mood</u></strong></a> by Lil Uzi Vert (2023)</em> recommended by Eric Zhao</p>
+<p align=center><em><a href="https://youtu.be/zwYzfZEu0OM?si=R7fnpkVQccWpBsf4"><strong><u>Red Moon</u></strong></a> by Lil Uzi Vert (2023)</em> recommended by Eric Zhao</p>
 
 ---
 
