@@ -13,18 +13,18 @@ constexpr Vector2 ORIGIN      = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 constexpr Vector2 BASE_SIZE   = { (float) SIZE, (float) SIZE };
 
 // Image owned by Nintendo — please don't sue me.
-constexpr char EDELGARD_FP[]  = "assets/game/edelgard_square.png";
+constexpr char LINK_FP[]  = "assets/game/edelgard_square.png";
 
 // Global Variables
 AppStatus gAppStatus     = RUNNING;
 float     gScaleFactor   = SIZE,
           gAngle         = 0.0f,
           gPulseTime     = 0.0f;
-Vector2   gPosition      = ORIGIN;
-Vector2   gScale         = BASE_SIZE;
+Vector2   gLinkPosition      = ORIGIN;
+Vector2   gLinkScale         = BASE_SIZE;
 float     gPreviousTicks = 0.0f;
 
-Texture2D gTexture;
+Texture2D gLinkTexture;
 
 // Function Declarations
 void initialise();
@@ -38,7 +38,7 @@ void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Textures");
 
-    gTexture = LoadTexture(EDELGARD_FP);
+    gLinkTexture = LoadTexture(LINK_FP);
 
     SetTargetFPS(FPS);
 }
@@ -57,7 +57,7 @@ void update()
 
     gPulseTime += 1.0f * deltaTime;
 
-    gScale = {
+    gLinkScale = {
         BASE_SIZE.x + MAX_AMP * cos(gPulseTime),
         BASE_SIZE.y + MAX_AMP * cos(gPulseTime)
     };
@@ -74,27 +74,27 @@ void render()
         0.0f, 0.0f,
 
         // bottom-right corner (of texture)
-        static_cast<float>(gTexture.width),
-        static_cast<float>(gTexture.height)
+        static_cast<float>(gLinkTexture.width),
+        static_cast<float>(gLinkTexture.height)
     };
 
     // Destination rectangle – centred on gPosition
     Rectangle destinationArea = {
-        gPosition.x,
-        gPosition.y,
-        static_cast<float>(gScale.x),
-        static_cast<float>(gScale.y)
+        gLinkPosition.x,
+        gLinkPosition.y,
+        static_cast<float>(gLinkScale.x),
+        static_cast<float>(gLinkScale.y)
     };
 
     // Origin inside the source texture (centre of the texture)
     Vector2 objectOrigin = {
-        static_cast<float>(gScale.x) / 2.0f,
-        static_cast<float>(gScale.y) / 2.0f
+        static_cast<float>(gLinkScale.x) / 2.0f,
+        static_cast<float>(gLinkScale.y) / 2.0f
     };
 
     // Render the texture on screen
     DrawTexturePro(
-        gTexture, 
+        gLinkTexture, 
         textureArea, 
         destinationArea, 
         objectOrigin, 
