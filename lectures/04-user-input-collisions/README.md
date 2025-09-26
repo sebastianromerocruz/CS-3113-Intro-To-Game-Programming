@@ -6,6 +6,7 @@
 
 <p align=center><strong>Songs of the day</strong>:</p>
 <p align=center><em><a href="https://youtu.be/dawrQnvwMTY?si=3OWq_HSV2dJRvEQX"><strong><u>死ぬのがいいわ (Dying's Not That Bad)</u></strong></a> by Fujii Kaze (2022)</em> recommended by Perry Huang</p>
+<p align=center><em><a href="https://youtu.be/TEB56tk7I88?si=L-Edc6VwAC8LUBTa"><strong><u>El Mañana</u></strong></a> by Gorillaz (2007)</em> recommended by Nat Hong</p>
 
 ---
 
@@ -321,37 +322,71 @@ int GetTouchPointCount(void);                          // Get number of touch po
 
 ## Collision Detection Theory
 
-Really kind of the last thing required for us to make something worth of the "video game" title is some sort of physics simulation. The easiest of these is **collision detection**, so it is no surprise that it was one of the first (if not _the_ first) to get implemented into a game:
+Really kind of the last thing required for us to make something worth of the "video game" title is some sort of physics simulation. The easiest of these, in my opinion, is **collision detection**, so it is no surprise that it was one of the first (if not _the_ first) to get implemented into a game:
 
-![pong-gif](assets/README/pong_gif.webp)
+<a id="fg-5"></a>
 
-<sub>**Figure 2**: Collision detection is, quite literally, the entire _raison d'être_ of Atari's [**Pong**](https://en.wikipedia.org/wiki/Pong).</sub>
+<p align=center>
+    <img src="assets/README/pong_gif.webp">
+    </img>
+</p>
 
-Nowadays, there are several ways of detecting collisions—all of them available to you—so let's take a look at them.
+<p align=center>
+    <sub>
+        <strong>Figure V</strong>: Collision detection is, quite literally, the entire <em>raison d'être</em> of Atari's <a href="https://en.wikipedia.org/wiki/Pong"><strong>Pong</strong></a>.
+    </sub>
+</p>
+
+There are several ways of detecting collisions—all of them available to you—so let's take a look at them.
 
 <a id="4-1"></a>
 
 ### **Circle-to-circle collisions**
 
-The easiest to calculate is _circle to circle collision detection_. Games like [***Hundreds***](https://en.wikipedia.org/wiki/Hundreds_(video_game)) and [***agar.io***](https://agar.io/) almost entirely rely on collisions of this kind, and both are massively popular. One of them was even designed by an [**NYU professor**](http://www.nealen.net/):
+The easiest to calculate is **circle to circle collision detection**. Games like [***Hundreds***](https://en.wikipedia.org/wiki/Hundreds_(video_game)) and [***agar.io***](https://agar.io/) almost entirely rely on collisions of this kind, and both are massively popular. One of them was even designed by an [**NYU professor**](http://www.nealen.net/):
 
-![osmos](assets/README/osmos.gif)
+<a id="fg-6"></a>
 
-<sub>**Figure 3**: [**Hemisphere Games'**](http://www.osmos-game.com/) [***Osmos***](https://en.wikipedia.org/wiki/Osmos).</sub>
+<p align=center>
+    <img src="assets/README/osmos.gif">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure VI</strong>: <a href="http://www.osmos-game.com/"><strong>Hemisphere Games'</strong></a> <a href="https://en.wikipedia.org/wiki/Osmos"><strong><em>Osmos</a></strong></em>.
+    </sub>
+</p>
 
 My favourite, though, would have to be the absolute arcade classic, Atari's [**Asteroids**](https://en.wikipedia.org/wiki/Asteroids_(video_game)):
 
-![asteroids-gif](assets/asteroids_gif.gif)
+<a id="fg-7"></a>
 
-<sub>**Figure 4**: Circle-to-circle detection at its finest.</sub>
+<p align=center>
+    <img src="assets/README/asteroids_gif.gif">
+    </img>
+</p>
 
----
+<p align=center>
+    <sub>
+        <strong>Figure VII</strong>: Circle-to-circle detection at its finest.
+    </sub>
+</p>
 
 Really, the only thing involved in circle-to-circle detection is a simple distance calculation from their centres. If we are in a cartesian plane, we can easily calculate this distance using the Pythagorean theorem:
 
-![circle-to-circle](assets/circle-to-circle.jpg)
+<a id="fg-8"></a>
 
-<sub>**Figure 5**: The mathematics of circle-to-circle collision detection. Doesn't get more simple than this. [**Source**](https://www.oreilly.com/library/view/opengl-game-development/9781783288199/ch05s03.html)</sub>
+<p align=center>
+    <img src="assets/README/circle-to-circle.png">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure VIII</strong>: The mathematics of circle-to-circle collision detection. Doesn't get more simple than this.
+    </sub>
+</p>
 
 In other words, _if the distance from the centres of the circles is less than the sum of their respective radii, we have a **collision**_.
 
@@ -359,17 +394,26 @@ In other words, _if the distance from the centres of the circles is less than th
 
 ## **Point-to-circle collisions**
 
-There's plenty of uses for point-to-circle collision detection:
+There are plenty of uses for _point-to-circle_ collision detection:
 
 - Clicking on a UI element with a mouse pointer.
-- Move the player by selecting a target destination.
-- Select a target to approach / attack.
+- Moving the player by selecting a target destination, like [**we did earlier**](#fg-4).
+- Selecting a target to approach / attack.
 
 Arguably easier than circle-to-circle, the math of point-to-circle is calculated by measuring the distance between the point to the centre of the circle. If the _point's distance is, at any point, smaller than the length of the radius, we have a collision_. We can calculate this using the distance formula:
 
-![distance-formula](assets/distance_formula.svg)
+<a id="fg-9"></a>
 
-<sub>**Figure 6**: The distance between two points in cartesian space. [**Source**](https://en.wikipedia.org/wiki/Euclidean_distance#Two_dimensions)</sub>
+<p align=center>
+    <img src="assets/README/distance.png">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure IX</strong>: The distance between two points in cartesian space.
+    </sub>
+</p>
 
 <a id="4-3"></a>
 
@@ -377,41 +421,63 @@ Arguably easier than circle-to-circle, the math of point-to-circle is calculated
 
 While the previous two collisions are easy to calculate, they are not the ones that we will likely be using the most. That honour goes to box-to-box collisions.
 
-![links-awakening](assets/links-awakening.gif)
+<a id="fg-10"></a>
 
-<sub>**Figure 7**: Collisions in Link's Awakening (a.k.a. the best handheld Zelda game, change my mind). [**Source**](https://gfycat.com/directleadingcoypu)</sub>
+<p align=center>
+    <img src="assets/README/links-awakening.gif">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure X</strong>: Collisions in Link's Awakening (a.k.a. the best handheld Zelda game, change my mind).
+    </sub>
+</p>
 
 If you're not convinced, check out the following diagram:
 
-![megaman](assets/megaman.png)
+<a id="fg-11"></a>
 
-<sub>**Figure 7**: Picturing Megaman in terms of boxes. [**Source**](http://www.kilobolt.com/collision-detection-basics)</sub>
+<p align=center>
+    <img src="assets/README/megaman.png">
+    </img>
+</p>
 
-The mathematics for this is interesting. We need to keep track of the box's centre (the same way we would with a circle). Let's call them _C1_ and _C2_:
+<p align=center>
+    <sub>
+        <strong>Figure XI</strong>: Picturing Megaman in terms of boxes. (<a href="https://www.kilobolt.com/collision-detection-basics"><strong>Source</strong></a>)
+    </sub>
+</p>
 
-1. Calculate the absolute difference (X<sub>diff</sub>) C1<sub>_x_</sub> and C2<sub>_x_</sub>.
+The mathematics for this is interesting. We need to keep track of the box's _origin_ (the same way we would with a circle). Let's call them _C1_ and _C2_:
+
+1. Calculate the absolute difference (X<sub>diff</sub>) between C1<sub>_x_</sub> and C2<sub>_x_</sub>.
 2. Do the same for C1<sub>_y_</sub> and C2<sub>_y_</sub> (Y<sub>diff</sub>).
 3. Calculate the distance between C1<sub>_x_</sub> and C2<sub>_x_</sub>. The formula for this is X<sub>distance</sub> = X<sub>diff</sub> - (width<sub>1</sub> + width<sub>2</sub>) / 2.
 3. Calculate the distance between C1<sub>_y_</sub> and C2<sub>_y_</sub>. The formula for this is Y<sub>distance</sub> = Y<sub>diff</sub> - (height<sub>1</sub> + height<sub>2</sub>) / 2.
 4. If both X<sub>distance</sub> and Y<sub>distance</sub> are below 0.0, you have a collision.
 
-![box-box-collision](assets/box-box-collision.png)
+<a id="fg-12"></a>
 
-<sub>**Figure 8**: Visualisation of box-to-box collisions.</sub>
+<p align=center>
+    <img src="assets/README/box-to-box.png">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure XII</strong>: Visualisation of box-to-box collisions.
+    </sub>
+</p>
 
 In code, this might look at follows:
 
 ```c++
-float x_distance = fabs(x_coord_a - x_coord_b) - ((width_a + width_b) / 2.0f);
-float y_distance = fabs(y_coord_a - y_coord_b) - ((height_a + height_b) / 2.0f);
+float xDistance = fabs(postionA.x - positionB.x) - ((scaleA.x + scaleB.x) / 2.0f);
+float yDistance = fabs(postionA.y - positionB.y) - ((scaleA.y + scaleB.y) / 2.0f);
 
-if (x_distance < 0 && y_distance < 0)
-{
-    // Collision!
-}
+if (xDistance < 0.0f && yDistance < 0.0f) printf("Collision!\n");
 ```
-
-<sub>**Code Block 2**: Box-to-box collision code. Please watch you parentheses carefully when doing this.</sub>
 
 <a id="4-4"></a>
 
@@ -419,6 +485,15 @@ if (x_distance < 0 && y_distance < 0)
 
 One last collision type that is relatively common is point-to-box; UI buttons in many games are square—shaped, for example. This one is pretty easy: simply _get the coordinates of the **top left** and **bottom right** corners, and check the points' coordinates fall inside of them_.
 
-![box-point-collision](assets/box-point-collision.png)
+<a id="fg-13"></a>
 
-<sub>**Figure 9**: Visualisation for box-point collisions.</sub>
+<p align=center>
+    <img src="assets/README/box-to-point.png">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure XIII</strong>: Visualisation for box-point collisions.
+    </sub>
+</p>
