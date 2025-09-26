@@ -17,7 +17,7 @@ AppStatus gAppStatus = RUNNING;
 Direction gDirection = RIGHT;         // start by rotating right
 float gScaleFactor   = 100.0f,
       gAngle         = 0.0f;
-Vector2 gLinkPosition    = { 0.0f, 0.0f };
+Vector2 gTeardropPosition    = { 0.0f, 0.0f };
 
 // Function Declarations
 void initialise();
@@ -79,8 +79,8 @@ void update()
 {
     gScaleFactor *= 1.0025f;
 
-    if (gLinkPosition.x < SCREEN_WIDTH)  gLinkPosition.x += 1.0f;
-    if (gLinkPosition.y < SCREEN_HEIGHT) gLinkPosition.y += 0.5f;
+    if (gTeardropPosition.x < SCREEN_WIDTH)  gTeardropPosition.x += 1.0f;
+    if (gTeardropPosition.y < SCREEN_HEIGHT) gTeardropPosition.y += 0.5f;
 
     // Increase angle by 1.0f times either 1
     // if we're turning right or -1 if we're
@@ -99,7 +99,7 @@ void render()
     ClearBackground(RAYWHITE);
 
     DrawPoly(
-        gLinkPosition,
+        gTeardropPosition,
         3, 
         gScaleFactor, 
         gAngle, 

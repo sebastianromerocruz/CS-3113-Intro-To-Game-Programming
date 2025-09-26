@@ -8,7 +8,7 @@
 
 ## Sections
 1. [**The Problem**](#1)
-2. [**The Requirements**](#1)
+2. [**The Requirements**](#2)
 3. [**How and What to Submit**](#3)
 
 ---

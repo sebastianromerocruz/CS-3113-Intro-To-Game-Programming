@@ -33,13 +33,13 @@ AppStatus gAppStatus     = RUNNING;
 float     gScaleFactor   = SIZE,
           gAngle         = 0.0f,
           gPulseTime     = 0.0f;
-Vector2   gLinkPosition      = ORIGIN;
-Vector2   gLinkScale         = BASE_SIZE;
+Vector2   gTeardropPosition      = ORIGIN;
+Vector2   gTeardropScale         = BASE_SIZE;
 float     gPreviousTicks = 0.0f;
 Member    gCurrentMember = NOODLE;
 int       gFrameCounter  = 0;
 
-Texture2D gLinkTexture;
+Texture2D gTeardropTexture;
 
 // Function Declarations
 void initialise();
@@ -53,7 +53,7 @@ void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Textures");
 
-    gLinkTexture = LoadTexture(ALBUM_COVER_FP);
+    gTeardropTexture = LoadTexture(ALBUM_COVER_FP);
 
     SetTargetFPS(FPS);
 }
@@ -73,7 +73,7 @@ void update()
     // Heartbeat
     gPulseTime += 1.0f * deltaTime;
 
-    gLinkScale = {
+    gTeardropScale = {
         BASE_SIZE.x + MAX_AMP * cos(gPulseTime),
         BASE_SIZE.y + MAX_AMP * cos(gPulseTime)
     };
@@ -110,31 +110,31 @@ void render()
         are starting from half-way length- and/or width-wise, depending
         on the member.
         */
-        switches[0] ? 0.0f : static_cast<float>(gLinkTexture.width)  / 2.0f,
-        switches[1] ? 0.0f : static_cast<float>(gLinkTexture.height) / 2.0f,
+        switches[0] ? 0.0f : static_cast<float>(gTeardropTexture.width)  / 2.0f,
+        switches[1] ? 0.0f : static_cast<float>(gTeardropTexture.height) / 2.0f,
 
         // bottom-right corner (of texture)
-        static_cast<float>(gLinkTexture.width)  / 2.0f,
-        static_cast<float>(gLinkTexture.height) / 2.0f
+        static_cast<float>(gTeardropTexture.width)  / 2.0f,
+        static_cast<float>(gTeardropTexture.height) / 2.0f
     };
 
     // Destination rectangle – centred on gPosition
     Rectangle destinationArea = {
-        gLinkPosition.x,
-        gLinkPosition.y,
-        static_cast<float>(gLinkScale.x),
-        static_cast<float>(gLinkScale.y)
+        gTeardropPosition.x,
+        gTeardropPosition.y,
+        static_cast<float>(gTeardropScale.x),
+        static_cast<float>(gTeardropScale.y)
     };
 
     // Origin inside the source texture (centre of the texture)
     Vector2 objectOrigin = {
-        static_cast<float>(gLinkScale.x) / 2.0f,
-        static_cast<float>(gLinkScale.y) / 2.0f
+        static_cast<float>(gTeardropScale.x) / 2.0f,
+        static_cast<float>(gTeardropScale.y) / 2.0f
     };
 
     // Render the texture on screen
     DrawTexturePro(
-        gLinkTexture, 
+        gTeardropTexture, 
         textureArea, 
         destinationArea, 
         objectOrigin, 
