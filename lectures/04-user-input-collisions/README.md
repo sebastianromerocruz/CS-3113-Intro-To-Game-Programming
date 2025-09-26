@@ -52,7 +52,7 @@ We have:
 - Drawn beautiful objects on our screens in `render`.
 - Tranformed these objects in `update`.
 
-If we considered the functions in here that we have, at least once, touched on or covered, we can see see that (aside from `shutdown`) there is one that we have conspicuously not touched yet: **`processInput`**. You might find this funny, since the only thing that differentiates simple computer graphics from a video game is the ability for a player to make decisions, convey those decision to the game, and have those decisions reflect in the game.
+If we considered the functions in here that we have, at least once, touched on or covered, we can see that (aside from `shutdown`) there is one that we have conspicuously not touched yet: **`processInput`**. You might find this funny, since the only thing that differentiates simple computer graphics from a video game is the ability for a player to make decisions, convey those decision to the game, and have those decisions reflect in the game.
 
 Well, that changes today. We have learned enough for us to graduate from the respectable practice of creating raylib art and into the realm of interactive computer graphics. _Id est:_ video games.
 
@@ -122,7 +122,7 @@ Let's make it so that, if the player presses any of the `WASD` KEYS, Link will b
 1. Check for user input.
 2. Register that input for later reference.
 
-In other words, we can't (or rather, we _shouldn't_) modify `gPositionLink` inside of `processInput`. The best we can do is, as stated above, register our input somewhere and later (i.e. in `update`) reference that input in our game logic. For this we're gonna create another `Vector2` for each of our game objects—our **movement vectors**:
+In other words, we can't (or rather, we _shouldn't_) modify `gLinkPosition` inside of `processInput`. The best we can do is, as stated above, register our input somewhere and later (i.e. in `update`) reference that input in our game logic. For this we're gonna create another `Vector2` for each of our game objects—our **movement vectors**:
 
 ```c++
 Vector2 gLinkMovement  = { 0.0f, 0.0f },
@@ -135,7 +135,13 @@ You can think of movement vectors as register the following pieces of informatio
 1. Whether or not we will be translating on either axis this frame.
 2. In which direction on either axis we will be translating (i.e. positive/negative).
 
-In these cases, this is what we will be doing is the following: 1) if the object will be moving in the positive direction, we set its x-component to **`1`**, and 2) if the object will be moving the negative direction, we will set its y-component to **`-1`**.
+In these cases, this is what we will be doing: 
+
+1. **For horizontal movement**: if the object will be moving in the positive x-direction (right), we set its x-component to **`1`**; if moving in the negative x-direction (left), we set its x-component to **`-1`**.
+
+2. **For vertical movement**: if the object will be moving in the positive y-direction (down), we set its y-component to **`1`**; if moving in the negative y-direction (up), we set its y-component to **`-1`**.
+
+3. **For no movement**: if the object is stationary on either axis, we set that component to **`0`**.
 
 Once we do this, all that is left to do is to incorporate our movement vectors into our game logic inside `update`. We'll use `IsKeyDown` for this. In this case, since we only want Link to move when we're holding down a key, remember to reset your movement vectors to `0.0`, so that when we stop holding it, Link will stop moving as well:
 
@@ -473,10 +479,16 @@ The mathematics for this is interesting. We need to keep track of the box's _ori
 In code, this might look at follows:
 
 ```c++
-float xDistance = fabs(postionA.x - positionB.x) - ((scaleA.x + scaleB.x) / 2.0f);
-float yDistance = fabs(postionA.y - positionB.y) - ((scaleA.y + scaleB.y) / 2.0f);
+bool isColliding(const Vector2 *positionA,  const Vector2 *scaleA, 
+                 const Vector2 *positionB, const Vector2 *scaleB)
+{
+    float xDistance = fabs(positionA->x - positionB->x) - ((scaleA->x + scaleB->x) / 2.0f);
+    float yDistance = fabs(positionA->y - positionB->y) - ((scaleA->y + scaleB->y) / 2.0f);
 
-if (xDistance < 0.0f && yDistance < 0.0f) printf("Collision!\n");
+    if (xDistance < 0.0f && yDistance < 0.0f) return true;
+
+    return false;
+}
 ```
 
 <a id="4-4"></a>
