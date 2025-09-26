@@ -43,7 +43,7 @@ void processInput();
 void update();
 void render();
 void shutdown();
-bool isColliding(const Vector2 *postionA,  const Vector2 *scaleA, const Vector2 *positionB, const Vector2 *scaleB);
+bool isColliding(const Vector2 *positionA, const Vector2 *scaleA, const Vector2 *positionB, const Vector2 *scaleB);
 
 // Function Definitions
 
@@ -52,18 +52,18 @@ bool isColliding(const Vector2 *postionA,  const Vector2 *scaleA, const Vector2 
  * 
  * @see 
  * 
- * @param postionA The position of the first object
+ * @param positionA The position of the first object
  * @param scaleA The scale of the first object
  * @param positionB The position of the second object
  * @param scaleB The scale of the second object
  * @return true if a collision is detected,
  * @return false if a collision is not detected
  */
-bool isColliding(const Vector2 *postionA,  const Vector2 *scaleA, 
+bool isColliding(const Vector2 *positionA,  const Vector2 *scaleA, 
                  const Vector2 *positionB, const Vector2 *scaleB)
 {
-    float xDistance = fabs(postionA->x - positionB->x) - ((scaleA->x + scaleB->x) / 2.0f);
-    float yDistance = fabs(postionA->y - positionB->y) - ((scaleA->y + scaleB->y) / 2.0f);
+    float xDistance = fabs(positionA->x - positionB->x) - ((scaleA->x + scaleB->x) / 2.0f);
+    float yDistance = fabs(positionA->y - positionB->y) - ((scaleA->y + scaleB->y) / 2.0f);
 
     if (xDistance < 0.0f && yDistance < 0.0f) return true;
 
