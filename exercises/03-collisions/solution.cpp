@@ -24,7 +24,7 @@ AppStatus gAppStatus     = RUNNING;
 float     gAngle         = 0.0f,
           gPreviousTicks = 0.0f;
 
-Vector2 gTeardropPosition = TEARDROP_INIT_POS,
+Vector2 gPosition = TEARDROP_INIT_POS,
         gTeardropMovement = { 0.0f, 0.0f },
         gScale    = TEARDROP_BASE_SIZE,
 
@@ -34,10 +34,14 @@ Vector2 gTeardropPosition = TEARDROP_INIT_POS,
 
         gMousePosition = GetMousePosition();
 
+Vector4 gTeardropCorners  = { };
+
 Texture2D gTexture;
 Texture2D gBeakerTexture;
 
 TeardropStatus gTeardropStatus = HANGING;
+
+bool gIsHovering = false;
 
 // Function Declarations
 void initialise();
@@ -64,10 +68,8 @@ bool isColliding(const Vector2 *postionA,  const Vector2 *scaleA, const Vector2 
 bool isColliding(const Vector2 *postionA,  const Vector2 *scaleA, 
                  const Vector2 *positionB, const Vector2 *scaleB)
 {
-    float xDistance = fabs(postionA->x - positionB->x) - 
-                      ((scaleA->x + scaleB->x) / 2.0f);
-    float yDistance = fabs(postionA->y - positionB->y) - 
-                      ((scaleA->y + scaleB->y) / 2.0f);
+    float xDistance = fabs(postionA->x - positionB->x) - ((scaleA->x + scaleB->x) / 2.0f);
+    float yDistance = fabs(postionA->y - positionB->y) - ((scaleA->y + scaleB->y) / 2.0f);
 
     if (xDistance < 0.0f && yDistance < 0.0f) return true;
 
@@ -111,8 +113,7 @@ void renderObject(const Texture2D *texture, const Vector2 *position,
 
 void initialise()
 {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, 
-        "User Input / Collision Detection");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "User Input / Collision Detection");
 
     gTexture = LoadTexture(TEARDROP_FP);
     gBeakerTexture   = LoadTexture(BEAKER_FP);
@@ -122,35 +123,57 @@ void initialise()
 
 void processInput() 
 {
-    // TODO - Get mouse position
+    gMousePosition = GetMousePosition();
 
-    // TODO - Check if mouse coordinates fall within teardrop object
+    gTeardropCorners = {
+        // Top-left corner
+        gPosition.x - gScale.x / 2,
+        gPosition.y - gScale.y / 2,
 
-    // TODO - If the player presses left mouse button within teardrop, release
-    //        teardrop (i.e. use its movement vector)
+        // Bottom-right corner
+        gPosition.x + gScale.x / 2,
+        gPosition.y + gScale.y / 2
+    };
+
+    bool gIsHovering = gTeardropCorners.x < gMousePosition.x && gMousePosition.x < gTeardropCorners.z &&
+                       gTeardropCorners.y < gMousePosition.y && gMousePosition.y < gTeardropCorners.w;
+
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && gIsHovering) 
+    {
+        gTeardropMovement.y = -1.0f;
+        gTeardropStatus     = RELEASED;
+    }
 
     // to avoid faster diagonal speed
     if (GetLength(&gTeardropMovement) > 1.0f) Normalise(&gTeardropMovement);
 
-    // to close the game
     if (IsKeyPressed(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 }
 
 void update() 
 {
-    // delta time
+    // Delta time
     float ticks = (float) GetTime();
     float deltaTime = ticks - gPreviousTicks;
     gPreviousTicks  = ticks;
 
-    // TODO - Stop horizontal translation once teardrop is released
-    gTeardropPosition.x = gTeardropPosition.x + SPEED * cos(GetTime()) * 
-                          deltaTime; // moving back and forth on the X-AXIS
+    if (gTeardropStatus != RELEASED) 
+        gPosition.x = gPosition.x + SPEED *
+                                                    cos(GetTime()) * 
+                                                    deltaTime;
 
-    // TODO - Add vertical translation for teardrop
+    gPosition.y -= SPEED * deltaTime * gTeardropMovement.y;
 
-    // TODO - If teardrop is colliding with beaker, shrink the size of teardrop
-    //        in a way that is FRAME-INDEPENDENT
+    if (isColliding(
+        &gPosition, &gScale, 
+        &gBeakerPosition,   &gBeakerScale)) 
+    {
+        if (gScale.x > 0.0f && gScale.y > 0.0f) 
+            gScale = {
+                gScale.x - SHRINK_RATE * deltaTime,
+                gScale.y - SHRINK_RATE * deltaTime
+            };
+    }
 }
 
 void render()
@@ -158,10 +181,10 @@ void render()
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    // render teardrop
-    renderObject(&gTexture, &gTeardropPosition, &gScale);
+    // Render teardrop
+    renderObject(&gTexture, &gPosition, &gScale);
 
-    // render the rupee
+    // Render the rupee
     renderObject(&gBeakerTexture, &gBeakerPosition, &gBeakerScale);
 
     EndDrawing();
