@@ -19,6 +19,10 @@
         - [**Normalisation**](#2-2-1)
 3. [**Mouse Input & Others**](#3)
 4. [**Collision Detection Theory**](#4)
+    1. [**Circle-to-circle collisions**](#4-1)
+    2. [**Point-to-circle collisions**](#4-2)
+    3. [**Box-to-box collisions**](#4-3)
+    4. [**Point-to-box collisions**](#4-4)
 
 ---
 
@@ -210,7 +214,7 @@ The result is the following behaviour: we have user-prompted movement!
 
 It might hard to notice in the gif above (or even at all), but a curious thing is happening with our movement in that, whenever Link is travelling _diagonally_ he is actually doing so _slightly faster_ than when he does so horizontally or vertically. Specifically, he is travelling √2-times faster. Why is this? 
 
-It's a result of vector arithmetic. A diagonal vector is really just the result of a vertical vector and a horizontal vector combined. The length of the combined vector—it's _magnitude (`||v||`)—is the hypothenuse that results from drawing those two vectors. In the case of our movement vector, if we're moving in the positive direction both horizontally (i.e. `x = 1.0f`) and vertically (i.e. `y = 1.0f`), its resulting hypothenuse would have a value of _√2, or around `1.414f`, which is **larger than `1.0f`_:
+It's a result of vector arithmetic. A diagonal vector is really just the result of a vertical vector and a horizontal vector combined. The length of the combined vector—it's _magnitude (`||v||`)—is the hypothenuse that results from drawing those two vectors. In the case of our movement vector, if we're moving in the positive direction both horizontally (i.e. `x = 1.0f`) and vertically (i.e. `y = 1.0f`), its resulting hypothenuse would have a value of _√2, or around `1.414f`, which is **larger than `1.0f`**_:
 
 <a id="fg-3"></a>
 
