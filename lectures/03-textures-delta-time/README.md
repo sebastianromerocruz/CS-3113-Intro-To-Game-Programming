@@ -19,6 +19,7 @@
         2. [**_Determine The Target Game Object's XY Coordinates_**](#2-2-2)
         3. [**_Determine The Target Game Origin Inside The **Destination** Rectangle_**](#2-2-3)
         4. [**_Draw/Render The Texture!_**](#2-2-4)
+        5. [**_Unload The Texture_**](#2-2-5)
 3. [**Delta Time**](#3)
     1. [**Implementation**](#3-1)
     2. [**Calculation**](#3-2)
@@ -412,6 +413,20 @@ _Et voilá!_
     </sub>
 </p>
 
+
+<a id="2-2-5"></a>
+
+#### Step 5: _Unload The Texture_
+
+To avoid memory leaks, in `shutdown`, we also want to add the following line _for every single texture that we load_ in order to deallocate the memory:
+
+```cpp
+void shutdown() 
+{ 
+    CloseWindow(); 
+    UnloadTexture(gTexture);  // right here!
+}
+```
 
 <br>
 

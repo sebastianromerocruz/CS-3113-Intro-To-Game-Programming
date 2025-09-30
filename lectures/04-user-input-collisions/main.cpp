@@ -179,7 +179,12 @@ void render()
     EndDrawing();
 }
 
-void shutdown() { CloseWindow(); }
+void shutdown() 
+{ 
+    CloseWindow(); 
+    UnloadTexture(gTexture);
+    UnloadTexture(gRupeeTexture);
+}
 
 int main(void)
 {
