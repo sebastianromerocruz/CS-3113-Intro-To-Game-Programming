@@ -450,7 +450,7 @@ if (GetLength(&gMovement) != 0)
 <a id="fg-14"></a>
 
 <p align=center>
-    <img src="assets/README/walk-in-place.gif">
+    <img src="assets/README/walk-down-only.gif">
     </img>
 </p>
 
