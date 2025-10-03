@@ -36,7 +36,7 @@ Vector2 gPosition = TEARDROP_INIT_POS,
 
 Vector4 gTeardropCorners  = { };
 
-Texture2D gTeardropTexture;
+Texture2D gTexture;
 Texture2D gBeakerTexture;
 
 TeardropStatus gTeardropStatus = HANGING;
@@ -115,8 +115,8 @@ void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "User Input / Collision Detection");
 
-    gTeardropTexture = LoadTexture(TEARDROP_FP);
-    gBeakerTexture = LoadTexture(BEAKER_FP);
+    gTexture = LoadTexture(TEARDROP_FP);
+    gBeakerTexture   = LoadTexture(BEAKER_FP);
 
     SetTargetFPS(FPS);
 }
@@ -182,7 +182,7 @@ void render()
     ClearBackground(RAYWHITE);
 
     // Render teardrop
-    renderObject(&gTeardropTexture, &gPosition, &gScale);
+    renderObject(&gTexture, &gPosition, &gScale);
 
     // Render the rupee
     renderObject(&gBeakerTexture, &gBeakerPosition, &gBeakerScale);
