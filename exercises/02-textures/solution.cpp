@@ -39,7 +39,7 @@ float     gPreviousTicks = 0.0f;
 Member    gCurrentMember = NOODLE;
 int       gFrameCounter  = 0;
 
-Texture2D gTeardropTexture;
+Texture2D gTexture;
 
 // Function Declarations
 void initialise();
@@ -53,7 +53,7 @@ void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Textures");
 
-    gTeardropTexture = LoadTexture(ALBUM_COVER_FP);
+    gTexture = LoadTexture(ALBUM_COVER_FP);
 
     SetTargetFPS(FPS);
 }
@@ -110,12 +110,12 @@ void render()
         are starting from half-way length- and/or width-wise, depending
         on the member.
         */
-        switches[0] ? 0.0f : static_cast<float>(gTeardropTexture.width)  / 2.0f,
-        switches[1] ? 0.0f : static_cast<float>(gTeardropTexture.height) / 2.0f,
+        switches[0] ? 0.0f : static_cast<float>(gTexture.width)  / 2.0f,
+        switches[1] ? 0.0f : static_cast<float>(gTexture.height) / 2.0f,
 
         // bottom-right corner (of texture)
-        static_cast<float>(gTeardropTexture.width)  / 2.0f,
-        static_cast<float>(gTeardropTexture.height) / 2.0f
+        static_cast<float>(gTexture.width)  / 2.0f,
+        static_cast<float>(gTexture.height) / 2.0f
     };
 
     // Destination rectangle – centred on gPosition
@@ -134,7 +134,7 @@ void render()
 
     // Render the texture on screen
     DrawTexturePro(
-        gTeardropTexture, 
+        gTexture, 
         textureArea, 
         destinationArea, 
         objectOrigin, 
@@ -148,7 +148,7 @@ void render()
 void shutdown() 
 { 
     CloseWindow();
-    UnloadTexture(gTeardropTexture);
+    UnloadTexture(gTexture);
 }
 
 int main(void)

@@ -24,7 +24,7 @@ Vector2   gPosition      = ORIGIN;
 Vector2   gScale         = BASE_SIZE;
 float     gPreviousTicks = 0.0f;
 
-Texture2D gTeardropTexture;
+Texture2D gTexture;
 
 // Function Declarations
 void initialise();
@@ -38,7 +38,7 @@ void initialise()
 {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Textures");
 
-    gTeardropTexture = LoadTexture(LINK_FP);
+    gTexture = LoadTexture(LINK_FP);
 
     SetTargetFPS(FPS);
 }
@@ -74,8 +74,8 @@ void render()
         0.0f, 0.0f,
 
         // bottom-right corner (of texture)
-        static_cast<float>(gTeardropTexture.width),
-        static_cast<float>(gTeardropTexture.height)
+        static_cast<float>(gTexture.width),
+        static_cast<float>(gTexture.height)
     };
 
     // Destination rectangle – centred on gPosition
@@ -94,7 +94,7 @@ void render()
 
     // Render the texture on screen
     DrawTexturePro(
-        gTeardropTexture, 
+        gTexture, 
         textureArea, 
         destinationArea, 
         objectOrigin, 
@@ -108,7 +108,7 @@ void render()
 void shutdown() 
 { 
     CloseWindow(); 
-    UnloadTexture(gTeardropTexture);
+    UnloadTexture(gTexture);
 }
 
 int main(void)
