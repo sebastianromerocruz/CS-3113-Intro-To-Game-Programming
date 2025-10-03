@@ -168,7 +168,7 @@ void renderObject(const Texture2D *texture, const Vector2 *position,
                 gAnimationIndices[gAnimationIndex], 
                 6, 8
             );
-        
+            break;
         default: break;
     }
 

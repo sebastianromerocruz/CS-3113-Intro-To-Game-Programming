@@ -78,7 +78,7 @@ It turns out that this is exactly how we will be doing graphics for a number of 
     </sub>
 </p>
 
-What you see in figure III is a single texture. If we were to apply it to our current object, we would indeed get the whole texture onto it, but that is not the goal here. Our goal is **isolate each individual portion of the image and make it its own texture**:
+What you see in figure III is a single texture. If we were to apply it to our current object, we would indeed get the whole texture onto it, but that is not the goal here. Our goal is to **isolate each individual portion of the image and make it its own texture**:
 
 <a id="fg-4"></a>
 
@@ -826,7 +826,7 @@ TextureType mTextureType;    // either ATLAS or SINGLE
 Vector2 mColliderDimensions;
 ```
 
-This second one one won't be too relevant until we get to our physics lecture, but the idea basically is that, so far, we've been using the scale of our game objects to calculate collision detection. However, sometimes, our texture file is considerably larger than the actual contents inside of it. So, we'll have a separate set of dimensions for our collider in such case we want to shrink that "solid" area:
+This second one won't be too relevant until we get to our physics lecture, but the idea basically is that, so far, we've been using the scale of our game objects to calculate collision detection. However, sometimes, our texture file is considerably larger than the actual contents inside of it. So, we'll have a separate set of dimensions for our collider in such case we want to shrink that "solid" area:
 
 <a id="fg-16"></a>
 
