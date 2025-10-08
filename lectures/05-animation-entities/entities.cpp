@@ -12,7 +12,7 @@ constexpr Vector2 ORIGIN      = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 AppStatus gAppStatus = RUNNING;
 float gPreviousTicks = 0.0f;
 
-Entity *protag = nullptr;
+Entity *gProtag = nullptr;
 
 // Function Declarations
 void initialise();
@@ -40,7 +40,7 @@ void initialise()
 
     Assets from @see https://sscary.itch.io/the-adventurer-female
     */
-    protag = new Entity(
+    gProtag = new Entity(
         ORIGIN,                       // position
         {250.0f * sizeRatio, 250.0f}, // scale
         "assets/game/walk.png",       // texture file address
@@ -54,16 +54,16 @@ void initialise()
 
 void processInput() 
 {
-    protag->resetMovement();
+    gProtag->resetMovement();
 
-    if      (IsKeyDown(KEY_A)) protag->moveLeft();
-    else if (IsKeyDown(KEY_D)) protag->moveRight();
-    if      (IsKeyDown(KEY_W)) protag->moveUp();
-    else if (IsKeyDown(KEY_S)) protag->moveDown();
+    if      (IsKeyDown(KEY_A)) gProtag->moveLeft();
+    else if (IsKeyDown(KEY_D)) gProtag->moveRight();
+    if      (IsKeyDown(KEY_W)) gProtag->moveUp();
+    else if (IsKeyDown(KEY_S)) gProtag->moveDown();
 
     // to avoid faster diagonal speed
-    if (GetLength(protag->getMovement()) > 1.0f) 
-        protag->normaliseMovement();
+    if (GetLength(gProtag->getMovement()) > 1.0f) 
+        gProtag->normaliseMovement();
 
     if (IsKeyPressed(KEY_Q) || WindowShouldClose()) gAppStatus = TERMINATED;
 }
@@ -76,7 +76,7 @@ void update()
     gPreviousTicks  = ticks;
 
     // we're not checking collisions—for now
-    protag->update(deltaTime);
+    gProtag->update(deltaTime);
 }
 
 void render()
@@ -84,7 +84,7 @@ void render()
     BeginDrawing();
     ClearBackground(ColorFromHex(BG_COLOUR));
 
-    protag->render();
+    gProtag->render();
 
     EndDrawing();
 }
