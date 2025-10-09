@@ -80,6 +80,12 @@ void initialise()
         });
     }
 
+    // Allocate the tile for the horizontal collision
+    gTiles[9].setTexture("assets/game/tile_0000.png");
+    gTiles[9].setScale({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[9].setColliderDimensions({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[9].setPosition({ORIGIN.y + TILE_DIMENSION, ORIGIN.y - TILE_DIMENSION});
+
     SetTargetFPS(FPS);
 }
 
