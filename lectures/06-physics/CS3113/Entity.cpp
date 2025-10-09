@@ -87,6 +87,14 @@ void Entity::checkCollisionX(Entity *collidableEntities, int collisionCheckCount
 
             float xDistance = fabs(mPosition.x - collidableEntity->mPosition.x);
             float xOverlap  = fabs(xDistance - (mColliderDimensions.x / 2.0f) - (collidableEntity->mColliderDimensions.x / 2.0f));
+            
+            // When standing on a platform, we're always slightly overlapping it vertically due to gravity,
+            // which causes false horizontal collision detections. So the solution I dound is only resolve X 
+            // collisions if there's significant Y overlap, preventing the platform we're standing on from 
+            // acting like a wall.
+            float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
+            float yOverlap  = fabs(yDistance - (mColliderDimensions.y / 2.0f) - (collidableEntity->mColliderDimensions.y / 2.0f));
+            if (yOverlap < 0.5f) continue; // Skip if barely touching vertically (standing on platform)
 
             if (mVelocity.x > 0) {
                 mPosition.x     -= xOverlap;
@@ -230,5 +238,21 @@ void Entity::render()
         mTexture, 
         textureArea, destinationArea, originOffset,
         mAngle, WHITE
+    );
+
+
+    // draw the collision box
+    Rectangle colliderBox = {
+    mPosition.x - mColliderDimensions.x / 2.0f,  
+    mPosition.y - mColliderDimensions.y / 2.0f,  
+    mColliderDimensions.x,                        
+    mColliderDimensions.y                        
+    };
+    DrawRectangleLines(
+        colliderBox.x,      // Top-left X
+        colliderBox.y,      // Top-left Y
+        colliderBox.width,  // Width
+        colliderBox.height, // Height
+        GREEN               // Color
     );
 }
