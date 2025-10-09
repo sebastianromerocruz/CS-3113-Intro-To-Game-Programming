@@ -83,18 +83,20 @@ void Entity::checkCollisionX(Entity *collidableEntities, int collisionCheckCount
         Entity *collidableEntity = &collidableEntities[i];
         
         if (isColliding(collidableEntity))
-        {
+        {            
+            // When standing on a platform, we're always slightly overlapping
+            // it vertically due to gravity, which causes false horizontal
+            // collision detections. So the solution I dound is only resolve X
+            // collisions if there's significant Y overlap, preventing the 
+            // platform we're standing on from acting like a wall.
+            float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
+            float yOverlap  = fabs(yDistance - (mColliderDimensions.y / 2.0f) - (collidableEntity->mColliderDimensions.y / 2.0f));
+
+            // Skip if barely touching vertically (standing on platform)
+            if (yOverlap < Y_COLLISION_THRESHOLD) continue;
 
             float xDistance = fabs(mPosition.x - collidableEntity->mPosition.x);
             float xOverlap  = fabs(xDistance - (mColliderDimensions.x / 2.0f) - (collidableEntity->mColliderDimensions.x / 2.0f));
-            
-            // When standing on a platform, we're always slightly overlapping it vertically due to gravity,
-            // which causes false horizontal collision detections. So the solution I dound is only resolve X 
-            // collisions if there's significant Y overlap, preventing the platform we're standing on from 
-            // acting like a wall.
-            float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
-            float yOverlap  = fabs(yDistance - (mColliderDimensions.y / 2.0f) - (collidableEntity->mColliderDimensions.y / 2.0f));
-            if (yOverlap < 0.5f) continue; // Skip if barely touching vertically (standing on platform)
 
             if (mVelocity.x > 0) {
                 mPosition.x     -= xOverlap;
@@ -157,23 +159,35 @@ void Entity::animate(float deltaTime)
     }
 }
 
+void Entity::displayCollider() 
+{
+    // draw the collision box
+    Rectangle colliderBox = {
+        mPosition.x - mColliderDimensions.x / 2.0f,  
+        mPosition.y - mColliderDimensions.y / 2.0f,  
+        mColliderDimensions.x,                        
+        mColliderDimensions.y                        
+    };
+
+    DrawRectangleLines(
+        colliderBox.x,      // Top-left X
+        colliderBox.y,      // Top-left Y
+        colliderBox.width,  // Width
+        colliderBox.height, // Height
+        GREEN               // Color
+    );
+}
+
 void Entity::update(float deltaTime, Entity *collidableEntities, int collisionCheckCount)
 {
-    if(!mIsActive) return;
+    if(mEntityStatus == INACTIVE) return;
 
     resetColliderFlags();
 
     mVelocity.x = mMovement.x * mSpeed;
 
-    // And we add the gravity next
-    mVelocity.x += mAcceleration.x;
-    mVelocity.y += mAcceleration.y;
-
-    mPosition.y += mVelocity.y * deltaTime;
-    checkCollisionY(collidableEntities, collisionCheckCount);
-
-    mPosition.x += mVelocity.x * deltaTime;
-    checkCollisionX(collidableEntities, collisionCheckCount);
+    mVelocity.x += mAcceleration.x * deltaTime;
+    mVelocity.y += mAcceleration.y * deltaTime;
 
     // ––––– JUMPING ––––– //
     if (mIsJumping)
@@ -185,13 +199,19 @@ void Entity::update(float deltaTime, Entity *collidableEntities, int collisionCh
         mVelocity.y -= mJumpingPower;
     }
 
+    mPosition.y += mVelocity.y * deltaTime;
+    checkCollisionY(collidableEntities, collisionCheckCount);
+
+    mPosition.x += mVelocity.x * deltaTime;
+    checkCollisionX(collidableEntities, collisionCheckCount);
+
     if (mTextureType == ATLAS && GetLength(mMovement) != 0 && mIsCollidingBottom) 
         animate(deltaTime);
 }
 
 void Entity::render()
 {
-    if(!mIsActive) return;
+    if(mEntityStatus == INACTIVE) return;
 
     Rectangle textureArea;
 
@@ -240,19 +260,5 @@ void Entity::render()
         mAngle, WHITE
     );
 
-
-    // draw the collision box
-    Rectangle colliderBox = {
-    mPosition.x - mColliderDimensions.x / 2.0f,  
-    mPosition.y - mColliderDimensions.y / 2.0f,  
-    mColliderDimensions.x,                        
-    mColliderDimensions.y                        
-    };
-    DrawRectangleLines(
-        colliderBox.x,      // Top-left X
-        colliderBox.y,      // Top-left Y
-        colliderBox.width,  // Width
-        colliderBox.height, // Height
-        GREEN               // Color
-    );
+    displayCollider();
 }

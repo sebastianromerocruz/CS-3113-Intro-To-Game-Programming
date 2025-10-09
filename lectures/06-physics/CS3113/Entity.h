@@ -3,7 +3,8 @@
 
 #include "cs3113.h"
 
-enum Direction { LEFT, UP, RIGHT, DOWN }; // For walking
+enum Direction    { LEFT, UP, RIGHT, DOWN }; // For walking
+enum EntityStatus { ACTIVE, INACTIVE      };
 
 class Entity
 {
@@ -38,7 +39,8 @@ private:
     bool mIsCollidingBottom = false;
     bool mIsCollidingRight  = false;
     bool mIsCollidingLeft   = false;
-    bool mIsActive          = true;
+
+    EntityStatus mEntityStatus = ACTIVE;
 
     bool isColliding(Entity *other) const;
     void checkCollisionY(Entity *collidableEntities, int collisionCheckCount);
@@ -54,9 +56,10 @@ private:
     void animate(float deltaTime);
 
 public:
-    static const int DEFAULT_SIZE        = 250;
-    static const int DEFAULT_SPEED       = 200;
-    static const int DEFAULT_FRAME_SPEED = 14;
+    static constexpr int   DEFAULT_SIZE          = 250;
+    static constexpr int   DEFAULT_SPEED         = 200;
+    static constexpr int   DEFAULT_FRAME_SPEED   = 14;
+    static constexpr float Y_COLLISION_THRESHOLD = 0.5f;
 
     Entity();
     Entity(Vector2 position, Vector2 scale, const char *textureFilepath);
@@ -70,8 +73,11 @@ public:
     void normaliseMovement() { Normalise(&mMovement); }
 
     void jump()       { mIsJumping = true;  }
-    void activate()   { mIsActive  = true;  }
-    void deactivate() { mIsActive  = false; }
+    void activate()   { mEntityStatus  = ACTIVE;   }
+    void deactivate() { mEntityStatus  = INACTIVE; }
+    void displayCollider();
+
+    bool isActive() { return mEntityStatus == ACTIVE ? true : false; }
 
     void moveUp()    { mMovement.y = -1; mDirection = UP;    }
     void moveDown()  { mMovement.y =  1; mDirection = DOWN;  }
