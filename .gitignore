@@ -34,6 +34,7 @@
 *.exe
 *.out
 *.app
+raylib_app
 
 ### CMake ###
 CMakeLists.txt.user
