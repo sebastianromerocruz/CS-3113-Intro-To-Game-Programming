@@ -241,7 +241,7 @@ I'll programmatically lay out a platform under our character by utilizing some l
     ```
 4. Bulk assign the important attributes to each of our tiles, with the position being based on the `leftMostX` variable we calculated.
     ```cpp
-    for (int i = 0; i < NUMBER_OF_TILES - 1; i++) 
+    for (int i = 0; i < NUMBER_OF_TILES; i++) 
     {
         // assets from @see https://kenney.nl/assets/pixel-platformer-industrial-expansion
         gTiles[i].setTexture("assets/game/tile_0000.png");
@@ -504,7 +504,7 @@ class Entity
 {
 private:
     // ...
-    void checkCollisionY(Entity *collidableEntities, int collisionCheckCount);
+    void checkCollisionX(Entity *collidableEntities, int collisionCheckCount);
     // ...
 };
 ```
@@ -543,7 +543,7 @@ void Entity::update(float deltaTime, Entity *collidableEntities, int collisionCh
     mPosition.x += mVelocity.x * deltaTime;
     checkCollisionX(collidableEntities, collisionCheckCount);
 
-    ///
+    // ...
 }
 ```
 
@@ -819,7 +819,7 @@ For this, we'll employ the use of **flags**. In other words, if we're colliding 
 
 // ...
 class Entity
-[
+{
 private:
     // ...
     bool mIsCollidingTop    = false;
@@ -846,7 +846,7 @@ public:
     bool isCollidingBottom() const { return mIsCollidingBottom; }
 
     // ...
-];
+};
 ```
 ```cpp
 // Entity.cpp
