@@ -700,6 +700,34 @@ void Entity::checkCollisionX(Entity *collidableEntities, int collisionCheckCount
     }
 }
 ```
+```cpp
+// main.cpp
+void initialise()
+{
+    // ...
+    for (int i = 0; i < NUMBER_OF_TILES - 1; i++) 
+    {
+        // assets from @see https://kenney.nl/assets/pixel-platformer-industrial-expansion
+        gTiles[i].setTexture("assets/game/tile_0000.png");
+        gTiles[i].setScale({TILE_DIMENSION, TILE_DIMENSION});
+        gTiles[i].setColliderDimensions({TILE_DIMENSION, TILE_DIMENSION});
+        gTiles[i].setPosition({
+            leftMostX + i * TILE_DIMENSION, 
+            ORIGIN.y + TILE_DIMENSION
+        });
+    }
+
+    // Allocate the tile for the horizontal collision
+    gTiles[NUMBER_OF_TILES - 1].setTexture("assets/game/tile_0000.png");
+    gTiles[NUMBER_OF_TILES - 1].setScale({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[NUMBER_OF_TILES - 1].setColliderDimensions({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[NUMBER_OF_TILES - 1].setPosition({ORIGIN.y + TILE_DIMENSION, ORIGIN.y - TILE_DIMENSION});
+
+    // ...
+}
+
+// ...
+```
 
 <a id="fg-13"></a>
 

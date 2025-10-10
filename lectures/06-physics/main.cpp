@@ -70,7 +70,7 @@ void initialise()
     // Compute the left‑most x coordinate so that the entire row is centred
     float leftMostX = ORIGIN.x - (NUMBER_OF_TILES * TILE_DIMENSION) / 2.0f;
 
-    for (int i = 0; i < NUMBER_OF_TILES; i++) 
+    for (int i = 0; i < NUMBER_OF_TILES - 1; i++) 
     {
         // assets from @see https://kenney.nl/assets/pixel-platformer-industrial-expansion
         gTiles[i].setTexture("assets/game/tile_0000.png");
@@ -83,10 +83,10 @@ void initialise()
     }
 
     // Allocate the tile for the horizontal collision
-    // gTiles[9].setTexture("assets/game/tile_0000.png");
-    // gTiles[9].setScale({TILE_DIMENSION, TILE_DIMENSION});
-    // gTiles[9].setColliderDimensions({TILE_DIMENSION, TILE_DIMENSION});
-    // gTiles[9].setPosition({ORIGIN.y + TILE_DIMENSION, ORIGIN.y - TILE_DIMENSION});
+    gTiles[NUMBER_OF_TILES - 1].setTexture("assets/game/tile_0000.png");
+    gTiles[NUMBER_OF_TILES - 1].setScale({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[NUMBER_OF_TILES - 1].setColliderDimensions({TILE_DIMENSION, TILE_DIMENSION});
+    gTiles[NUMBER_OF_TILES - 1].setPosition({ORIGIN.y + TILE_DIMENSION, ORIGIN.y - TILE_DIMENSION});
 
     SetTargetFPS(FPS);
 }
