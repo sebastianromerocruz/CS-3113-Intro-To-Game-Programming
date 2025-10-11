@@ -150,8 +150,6 @@ $RECYCLE.BIN/
 # Custom
 
 *.pdf
-lectures/*
-!lectures/01-introduction
-!lectures/02-transformations
+raylib_app
 
-exercises/01-transformations/SOLUTION.cpp
+lectures/00-test-lecture
