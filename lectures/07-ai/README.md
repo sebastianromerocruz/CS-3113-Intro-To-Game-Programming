@@ -32,8 +32,7 @@
 6. [**Audio: Feedback, Environment, and Mood**](#6)
     1. [**Initializing the Audio System**](#6-1)
     2. [**Playing Background Music**](#6-2)
-    3. [**Playing Background Music**](#6-3)
-    4. [**Playing Sound Effects**](#6-4)
+    3. [**Playing Sound Effects**](#6-3)
 
 ---
 
@@ -404,7 +403,7 @@ private:
 
 // ...
 
-void Entity::AIActivate()
+void Entity::AIActivate(Entity *target)
 {
     switch (mAIType)
     {
@@ -538,6 +537,7 @@ void Entity::AIFollow(Entity *target)
         // Change direction of the NPC
         if (mPosition.x > target->getPosition().x) moveLeft();
         else                                       moveRight();
+        break;
     
     default:
         break;
