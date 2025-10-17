@@ -39,6 +39,7 @@
 4. [**User Input / Collision Detection**](lectures/04-user-input-collisions)
 5. [**Animation / The `Entity` Class**](lectures/05-animation)
 6. [**Physics**](lectures/06-physics)
+7. [**AI In Games**](lectures/07-ai)
 
 <!-- 1. **Week 1**: The basics
     1.  [**Introduction**](lectures/introduction/)
