@@ -128,7 +128,7 @@ void shutdown()
 }
 ```
 
-Not to mention that we had to bload our `Entity` class's `update` method's signature in order to pass in this array of blocks:
+Not to mention that we had to bloat our `Entity` class's `update` method's signature in order to pass in this array of blocks:
 
 ```c++
 // Entity.h
