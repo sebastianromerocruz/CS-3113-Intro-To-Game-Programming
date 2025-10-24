@@ -7,20 +7,29 @@
 <p align=center><strong>Songs of the day</strong>:</p>
 <p align=center>
     <em>
-        <a href="https://youtu.be/xnP7qKxwzjg?si=bhW-Jz5ZYleOZ5b2">
+        <a href="https://youtu.be/LLjfal8jCYI?si=3kiesvsnz77Vutpe">
             <strong>
-                Dracula
+                オーバーライド (Override feat. Kasane Teto)
             </strong>
-        </a> by Tame Impala (2025), recommended by Karan Singh
+        </a> by 吉田夜世 (Yoshida Yasei; 2023), recommended by Perry Huang
     </em>
 </p>
 <p align=center>
     <em>
-        <a href="https://youtu.be/kVsgdURODeg?si=0E5WhMKIdLLnW5jx">
+        <a href="https://youtu.be/qQzdAsjWGPg?si=-uf57iQaZ5ItYpWG">
             <strong>
-                After Midnight
+                My Way
             </strong>
-        </a> by Phoenix (2022)
+        </a> by Frank Sinatra (1969), recommended by Quang Nguyen
+    </em>
+</p>
+<p align=center>
+    <em>
+        <a href="https://youtu.be/ZHwVBirqD2s?si=VCr6kYYe7a_f4PX9">
+            <strong>
+                I'm Still Standing
+            </strong>
+        </a> by Elton John (1983), recommended by Natt Hong
     </em>
 </p>
 
@@ -38,6 +47,7 @@
         - [**`render`**](#2-3-3)
         - [**`isSolidTileAt`**](#2-3-4)
 3. [**Overloading The `Entity` Class's `checkCollisionX` & `checkCollisionY` Methods**](#3)
+4. [**Cameras in raylib**](#4)
 
 ---
 
@@ -935,3 +945,144 @@ To finally get what we've been looking for:
         <strong>Figure X</strong>: <em>Habēmus Mapam</em>.
     </sub>
 </p>
+
+<br>
+
+<a id="4"></a>
+
+## Cameras in raylib
+
+One last, unrelated, yet extremely important thing. You'll sometimes hear developers say that a good game is one that has the **three Cs** covered:
+
+1. **Character**
+2. **Controller**
+3. **Camera**
+
+We've covered the first two extensively, and it's about time we cover the third. In video games, a **camera** determines what part of the world the player sees. Even in 2D games, the world often extends far beyond the visible screen—the camera acts like a **window** into that larger world.
+
+Without a camera system, the view would stay fixed at a single point, meaning the player could walk off-screen and we'd be none the wiser. By controlling the camera’s position and movement, we can:
+
+- **Follow the player** smoothly as they explore the world
+- **Create cinematic effects** (like zooms or shakes; more on that next week)
+- **Constrain visibility** to specific areas for pacing or difficulty
+- **Enhance immersion**, making the world feel larger and more dynamic
+
+In short, the camera connects **gameplay** and **presentation**—it tells the player _where to look_.
+
+<a id="4-1"></a>
+
+### Camera Setup
+
+We use Raylib’s built-in `Camera2D` structure to control what part of the world is visible. Here’s how the camera is initialized in the `initialise()` function:
+
+```cpp
+gState.camera = { 0 };                                // Zero-initialize all fields
+gState.camera.target = gState.xochitl->getPosition(); // Start centered on the player
+gState.camera.offset = ORIGIN;                        // Keep player centered on screen
+gState.camera.rotation = 0.0f;                        // No rotation
+gState.camera.zoom = 1.0f;                            // Normal zoom level
+```
+
+In order here's what each of these do and how we use them:
+
+| Attribute      | Description                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------- |
+| **`target`**   | The world position the camera looks at. Here, it starts at the player’s position.         |
+| **`offset`**   | The point on the screen where the target appears — the center of the window in this case. |
+| **`zoom`**     | Controls how close or far the camera is (1.0 = normal, >1 = zoom in, <1 = zoom out).      |
+| **`rotation`** | Rotates the entire view (set to 0 for a stable, upright camera).                          |
+
+<sub>**Figure XI**: The list of relevant attributes belonging to the `Camera2D` object.</sub>
+
+Together, these values define **what the camera looks at** and **how it’s displayed** on the screen.
+
+<a id="4-2"></a>
+
+### Smooth Camera Movement
+
+Technically, all we need to do every frame in order to have the camera follow our player is to set its `target` attribute to their position:
+
+```cpp
+// main.cpp
+
+// ...
+
+void update() 
+{
+    // ...
+
+    while (deltaTime >= FIXED_TIMESTEP)
+    {
+        // ...
+
+        gState.camera.target = gState.xochitl->getPosition();
+
+        // ...
+    }
+}
+
+//
+```
+
+What we can do instead for a smoother effect is move our camera **eases** toward it gradually. In my code, I handle this via the function `panCamera()`:
+
+```cpp
+void panCamera(Camera2D *camera, const Vector2 *targetPosition)
+{
+    Vector2 positionDifference = Vector2Subtract(*targetPosition, camera->target);
+    camera->target = Vector2Add(camera->target, Vector2Scale(positionDifference, 0.1f));
+}
+```
+
+Here’s what’s happening:
+
+1. We compute how far the camera is from the player (`positionDifference`).
+2. We move the camera **10% of the way** toward that position each frame (`0.1f` smoothing factor).
+
+This gives the camera a subtle “lag” effect—it follows the player smoothly rather than snapping rigidly. Increasing the smoothing factor makes the camera move more tightly; decreasing it makes it float more loosely.
+
+<a id="4-3"></a>
+
+### Horizontal-Only Tracking
+
+Often, in platformers, we want the camera to follow the player’s **x-position** (left and right) but not vertical movement. We can achieve this by calling `panCamera` in the following fashion:
+
+```cpp
+// main.cpp
+
+// ...
+
+void update() 
+{
+    // ...
+
+    while (deltaTime >= FIXED_TIMESTEP)
+    {
+        // ...
+
+        Vector2 currentPlayerPosition = { gState.xochitl->getPosition().x, ORIGIN.y };
+        panCamera(&gState.camera, &currentPlayerPosition);
+
+        // ...
+    }
+}
+
+//
+```
+
+By keeping the `y`-value fixed, the view remains steady even when the player jumps or falls.
+
+<a id="4-4"></a>
+
+### Rendering with the Camera
+
+When using cameras, all world-space drawing has to be done between these two Raylib calls:
+
+```cpp
+BeginMode2D(gState.camera);
+    gState.map->render();
+    gState.xochitl->render();
+EndMode2D();
+```
+
+Everything drawn between these calls is transformed according to the camera’s position, zoom, and rotation — so when the camera moves, the world appears to scroll naturally across the screen.

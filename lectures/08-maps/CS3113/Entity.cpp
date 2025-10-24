@@ -174,7 +174,7 @@ void Entity::checkCollisionX(Map *map)
          map->isSolidTileAt(leftBottomProbe, &xOverlap, &yOverlap)) 
          && mVelocity.x < 0.0f && yOverlap >= 0.5f)
     {
-        mPosition.x += xOverlap;   // push right
+        mPosition.x += xOverlap * 1.01;   // push right
         mVelocity.x  = 0.0f;
         mIsCollidingLeft = true;
     }

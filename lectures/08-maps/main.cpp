@@ -7,6 +7,8 @@ struct GameState
 
     Music bgm;
     Sound jumpSound;
+
+    Camera2D camera;
 };
 
 // Global Constants
@@ -39,7 +41,6 @@ constexpr unsigned int LEVEL_DATA[] = {
    4, 3, 3, 3, 0, 0, 0, 3, 3, 3, 3, 3, 3, 4
 };
 
-
 // Global Variables
 AppStatus gAppStatus   = RUNNING;
 float gPreviousTicks   = 0.0f,
@@ -53,6 +54,29 @@ void processInput();
 void update();
 void render();
 void shutdown();
+void panCamera(Camera2D *camera, const Vector2 *targetPosition);
+
+/**
+ * The function `panCamera` smoothly adjusts the camera's target position towards a specified target
+ * position.
+ * 
+ * @param camera The `camera` parameter is a pointer to a `Camera2D` struct, which likely contains
+ * information about a 2D camera such as its position, target, zoom level, and other properties.
+ * @param targetPosition The `targetPosition` parameter is a pointer to a `Vector2` structure that
+ * represents the desired position where the camera should be focused or centered on.
+ */
+void panCamera(Camera2D *camera, const Vector2 *targetPosition)
+{
+    Vector2 positionDifference = Vector2Subtract(
+        *targetPosition, 
+        camera->target
+    );
+
+    camera->target = Vector2Add(
+        camera->target, 
+        Vector2Scale(positionDifference, 0.1f)
+    ); // 0.1 = smoothing factor
+}
 
 void initialise()
 {
@@ -107,6 +131,15 @@ void initialise()
     });
     gState.xochitl->setAcceleration({0.0f, ACCELERATION_OF_GRAVITY});
 
+    /*
+        ----------- CAMERA -----------
+    */
+    gState.camera = { 0 };                                // zero initialize
+    gState.camera.target = gState.xochitl->getPosition(); // camera follows player
+    gState.camera.offset = ORIGIN;                        // camera offset to center of screen
+    gState.camera.rotation = 0.0f;                        // no rotation
+    gState.camera.zoom = 1.0f;                            // default zoom
+
     SetTargetFPS(FPS);
 }
 
@@ -123,7 +156,6 @@ void processInput()
         PlaySound(gState.jumpSound);
     }
 
-    // to avoid faster diagonal speed
     if (GetLength(gState.xochitl->getMovement()) > 1.0f) 
         gState.xochitl->normaliseMovement();
 
@@ -160,6 +192,10 @@ void update()
 
         deltaTime -= FIXED_TIMESTEP;
 
+        Vector2 currentPlayerPosition = { gState.xochitl->getPosition().x, ORIGIN.y };
+
+        panCamera(&gState.camera, &currentPlayerPosition);
+
         if (gState.xochitl->getPosition().y > 800.0f) gAppStatus = TERMINATED;
     }
 }
@@ -169,8 +205,12 @@ void render()
     BeginDrawing();
     ClearBackground(ColorFromHex(BG_COLOUR));
 
+    BeginMode2D(gState.camera);
+
     gState.xochitl->render();
     gState.map->render();
+
+    EndMode2D();
 
     EndDrawing();
 }
