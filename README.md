@@ -41,35 +41,7 @@
 6. [**Physics**](lectures/06-physics)
 7. [**AI In Games**](lectures/07-ai)
 8. [**Maps**](lectures/08-maps)
-
-<!-- 1. **Week 1**: The basics
-    1.  [**Introduction**](lectures/introduction/)
-    2.  [**Triangles**](lectures/triangle/)
-2. **Week 2**: Moving in video games
-    1.  [**You're getting old, Matrix**](lectures/matrices/)
-    2.  [**Transformations**](lectures/transformations/)
-3. **Week 3**: Applying art to our games
-    1.  [**Delta Time**](lectures/delta-time/)
-    2.  [**Textures**](lectures/textures/)
-4. **Week 4**: Player input and basic collision detection
-    1.  [**Player Input**](lectures/player-input/)
-    2.  [**Collision Detection**](lectures/collision-detection/) 
-5. **Week 5** Sprite Animation and Text and The Entity Class: 
-    1.  [**Sprite Animation and Text**](lectures/sprites-and-text/)
-    2.  [**Entities**](lectures/entities/)
-6. **Week 6**: Physics 1 and Physics 2
-    1. [**Physics: Gravity**](lectures/physics_1/)
-    2. [**Physics: Colliding with Different Kinds of Entities**](lectures/physics_2/) 
-7. **Week 7**: Music, sound effects, and basic enemy AI
-    1. [**Music and Sound Effects**](lectures/sound-fx/)
-    2. [**Basic Enemy AI**](lectures/enemy-ai/)
-8. **Week 8**: Map and stage building
-    1. [**Tilesets and Tilemaps**](lectures/maps/)
-    2. [**Scenes**](lectures/scenes/)
-9. **Weeks 9**: Special effects
-    1. [**Effects**](lectures/fx/)
-    2. [**Shaders**](lectures/shaders/)
-10. **Week 10**: [**Playtesting and publishing your game**](lectures/playtesting/) -->
+9. [**Scenes**](lectures/09-scenes)
 
 <sub>Released on each Friday day before class.</sub>
 
@@ -79,19 +51,19 @@
 
 ### _Instructor and Course Assistant_
 
-[**Sebastián Romero Cruz**](https://github.com/sebastianromerocruz)  _(They / Them)_
+- [**Sebastián Romero Cruz**](https://github.com/sebastianromerocruz)  _(They / Them)_
 
-| **E-Mail**                                  | **Office Hours**                                                                                                     |
-|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
-| [**sebastian.romerocruz@nyu.edu**](mailto:src402@nyu.edu) | [**calendly**](https://calendly.com/profromerocruz) |
+    | **E-Mail**                                  | **Office Hours**                                                                                                     |
+    |---------------------------------------------|----------------------------------------------------------------------------------------------------------------------|
+    | [**sebastian.romerocruz@nyu.edu**](mailto:src402@nyu.edu) | [**calendly**](https://calendly.com/profromerocruz) |
 
-[**CA: Eric Zhao**]()
+- **Eric Zhao (Course Assistant)**
 
-| **E-Mail**                                  | **Office Hours**                                                     | **Location** |
-|---------------------------------------------|----------------------------------------------------------------------|--------------|
-| [**ez2346@nyu.edu**](mailto:ez2346@nyu.edu) | **Monday:** 4:00 PM - 6:20 PM<br>**Tuesday:** 4:00 PM - 5:00 PM<br>**Friday:** 12:00 PM (Noon) - 2:00 PM | Jacobs Hall 223, Room F |
+    | **E-Mail**                                  | **Office Hours**                                                     | **Location** |
+    |---------------------------------------------|----------------------------------------------------------------------|--------------|
+    | [**ez2346@nyu.edu**](mailto:ez2346@nyu.edu) | **Monday:** 4:00 PM - 6:20 PM<br>**Tuesday:** 4:00 PM - 5:00 PM<br>**Friday:** 12:00 PM (Noon) - 2:00 PM | Jacobs Hall 223, Room F |
 
-*If you need to email Eric for anything related to this class, please include the course number (CS3113) and your first and last name in the subject line.*
+    *If you need to email Eric for anything related to this class, please include the course number (CS3113) and your first and last name in the subject line.*
 
 
 <br>
