@@ -371,7 +371,7 @@ LevelA::~LevelA() { shutdown(); }
 But our `initialise` method is basically going to receive a copy-and-pasted version of the functionality in `main`'s `initialise`. The big change is that the game state is no longer a global variable (`gState`) but an attribute (`mGameState`):
 
 ```cpp
-// Entity.cpp
+// LevelA.cpp
 
 // ...
 
@@ -431,7 +431,7 @@ void LevelA::initialise()
 The same goes for `update`, `render` and `shutdown` (note that `panCamera` now resides in `cs3113.h`/`cs3113.cpp`):
 
 ```cpp
-// Entity.cpp
+// LevelA.cpp
 
 // ...
 
@@ -478,7 +478,7 @@ This done, we can _significantly_ clean up our `main` file:
 
 ```cpp
 // main.cpp
-#include "CS3113/LevelB.h"
+#include "CS3113/LevelA.h"
 
 // ...
 
@@ -489,7 +489,8 @@ LevelA *gLevelA;
 void initialise()
 {
     gLevelA = new LevelA(ORIGIN, "#C0897E");
-    gLevelA.initialise();
+    gLevelA->initialise(); // remember gLevelA is dynamically allocated 
+                           // memory so we use arrow operator
 }
 
 void processInput() 
@@ -576,7 +577,7 @@ So, if we have two scene types (I created a virtually identical level over at [*
 
 // ...
 
-constexpr int NUMBER_OF_LEVELS = 2
+constexpr int NUMBER_OF_LEVELS = 2;
 
 // ...
 
