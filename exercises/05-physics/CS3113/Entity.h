@@ -137,4 +137,4 @@ public:
         { mEntityType = entityType;                }
 };
 
-#endif // ENTITY_CPP
+#endif // ENTITY_H
