@@ -116,8 +116,8 @@ void render()
     BeginMode2D(gCurrentScene->getState().camera);
     gShader.begin();
 
-    gCurrentScene->render();
     gShader.setVector2("lightPosition", gLightPosition);
+    gCurrentScene->render();
 
     gShader.end();
     gEffects->render();

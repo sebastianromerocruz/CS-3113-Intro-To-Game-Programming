@@ -581,7 +581,7 @@ void main()
 
 - We've got `fragTexCoord` and `fragPosition` coming in from the _vertex shader_ (since they're `in` variables).
 - We've got `texture0` being fed into the shader by our CPU every frame (since it's a `uniform` variable). This represents the actual texture file we use when calling the `render` function.
-- We've got `finalColor` being pushed out of the shader. Basically, fvery fragment shader must output the final color of the current pixel it is working with. In our code, there's not a lot going on, we're simply sampling directly from the texture:
+- We've got `finalColor` being pushed out of the shader. Basically, every fragment shader must output the final color of the current pixel it is working with. In our code, there's not a lot going on, we're simply sampling directly from the texture:
     ```glsl
     finalColor = texture(texture0, fragTexCoord);
     ```
@@ -876,8 +876,10 @@ void render()
 
     gShader.begin();
 
-    gCurrentScene->render();
+    
     gShader.setVector2("lightPosition", gLightPosition);
+
+    gCurrentScene->render();
 
     gShader.end();
 
