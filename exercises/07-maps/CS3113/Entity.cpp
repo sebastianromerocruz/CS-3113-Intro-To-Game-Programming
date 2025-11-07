@@ -77,7 +77,7 @@ void Entity::checkCollisionX(Entity *collidableEntities, int collisionCheckCount
         {            
             // When standing on a platform, we're always slightly overlapping
             // it vertically due to gravity, which causes false horizontal
-            // collision detections. So the solution I dound is only resolve X
+            // collision detections. So the solution I found is only resolve X
             // collisions if there's significant Y overlap, preventing the 
             // platform we're standing on from acting like a wall.
             float yDistance = fabs(mPosition.y - collidableEntity->mPosition.y);
