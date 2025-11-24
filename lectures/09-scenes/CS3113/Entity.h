@@ -109,7 +109,7 @@ public:
     Vector2     getVelocity()              const { return mVelocity;              }
     Vector2     getAcceleration()          const { return mAcceleration;          }
     Vector2     getScale()                 const { return mScale;                 }
-    Vector2     getColliderDimensions()    const { return mScale;                 }
+    Vector2     getColliderDimensions()    const { return mColliderDimensions;    }
     Vector2     getSpriteSheetDimensions() const { return mSpriteSheetDimensions; }
     Texture2D   getTexture()               const { return mTexture;               }
     TextureType getTextureType()           const { return mTextureType;           }

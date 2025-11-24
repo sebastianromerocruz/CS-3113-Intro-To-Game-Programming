@@ -58,7 +58,7 @@ public:
     Vector2     getPosition()              const { return mPosition;              }
     Vector2     getMovement()              const { return mMovement;              }
     Vector2     getScale()                 const { return mScale;                 }
-    Vector2     getColliderDimensions()    const { return mScale;                 }
+    Vector2     getColliderDimensions()    const { return mColliderDimensions;    }
     Vector2     getSpriteSheetDimensions() const { return mSpriteSheetDimensions; }
     Texture2D   getTexture()               const { return mTexture;               }
     TextureType getTextureType()           const { return mTextureType;           }
