@@ -1,10 +1,10 @@
-<h2 align=center>Week 01</h2>
+<h2 align=center>Week I</h2>
 
 <h1 align=center>Hello, Raylib!</h1>
 
-<h3 align=center>V Horsebow Moon, Imperial Year MMXXV</h3>
+<h3 align=center>XXIII Guardian Moon, Imperial Year MMXXVI</h3>
 
-<p align=center><strong><em>Song of the day</strong>: <a href="https://youtu.be/Soy4jGPHr3g?si=3OzzGXAaF8yi1u8q"><strong><u>テトリス (Tetris feat. 重音テト [Kasane Teto])</u></strong></a> by 柊マグネタイト (Hiiragi Magnetite) (2024).</em></p>
+<p align=center><strong><em>Song of the day</strong>: <a href="https://youtu.be/0qUtT6k83Go?si=c-pKA-WsWJ57CQjp"><strong><u>Fior di Latte</u></strong></a> by Phoenix (2017)</em></p>
 
 ---
 
