@@ -241,7 +241,9 @@ NYU School of Engineering Policies and Procedures on Academic Misconduct [**Stud
 
 #### Generative AI
 
-The question on everybody's mind at this point is most likely this: can I use generative AI (gen AI) in this class? This short answer is that, most of the time, _no, you cannot_. The long answer is more nuanced, given the omnipresence and easy-of-use of tech like ChatGPT and Copilot. My general advice is to use your common sense: _is gen AI doing most of the work for you_? If so, then you are likely in the danger zone, at least as far as this course is concerned.
+You can only learn from the work from the work that you actually do yourself. CS 3113 is an intro class—the 1114 of game development. The goal here is for you to learn the very basic building blocks of a trade.
+
+So, you may be wondering: can I use generative AI (gen AI) in this class? This short answer is that, most of the time, _no, you cannot_. The long answer is more nuanced, given the omnipresence and easy-of-use of tech like ChatGPT and Copilot. My general advice is to use your common sense: _is gen AI doing most of the work for you_? If so, then you are likely in the danger zone, at least as far as this course is concerned.
 
 In our opinion, we're not doing _anything_ in CS 3113 that warrants the use of gen AI. However, in order to minimize ambiguity, please abide by the following rules and you will be fine:
 
