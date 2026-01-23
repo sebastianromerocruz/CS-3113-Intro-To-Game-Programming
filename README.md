@@ -34,7 +34,7 @@
 ### _Lecture Notes_
 
 1. [**The Basics: _Hello, Raylib!_**](lectures/01-introduction)
-2. [**Transformations**](lectures/02-transformations)
+<!-- 2. [**Transformations**](lectures/02-transformations)
 3. [**Textures / Delta Time**](lectures/03-textures-delta-time)
 4. [**User Input / Collision Detection**](lectures/04-user-input-collisions)
 5. [**Animation / The `Entity` Class**](lectures/05-animation-entities)
@@ -43,7 +43,7 @@
 8. [**Maps**](lectures/08-maps)
 9. [**Scenes**](lectures/09-scenes)
 10. [**Effects / Shaders**](lectures/10-effects-shaders)
-11. [**Playtesting**](lectures/11-playtesting)
+11. [**Playtesting**](lectures/11-playtesting) -->
 
 <sub>Released on each Friday day before class.</sub>
 
@@ -63,7 +63,7 @@
 
     | **E-Mail**                                  | **Office Hours**                                                     | **Location** |
     |---------------------------------------------|----------------------------------------------------------------------|--------------|
-    | [**ez2346@nyu.edu**](mailto:ez2346@nyu.edu) | **Monday:** 4:00 PM - 6:20 PM<br>**Tuesday:** 4:00 PM - 5:00 PM<br>**Friday:** 12:00 PM (Noon) - 2:00 PM | Jacobs Hall 223, Room F |
+    | [**ez2346@nyu.edu**](mailto:ez2346@nyu.edu) | **Tuesday:** 9:00 AM - 12:00 PM (ZOOM) <br>**Friday:** 9:00 PM - 2:00 PM (Office) | TBD |
 
     *If you need to email Eric for anything related to this class, please include the course number (CS3113) and your first and last name in the subject line.*
 
@@ -171,11 +171,12 @@ As for your final letter grade, the following scale will be used:
 
 | Project                 | Release Date        | Due Date                   |
 |-------------------------|---------------------|----------------------------|
-| **Simple Scene**        | Friday, Sept 19     | Saturday, Sept 27 11:59PM  |
-| **Pong**                | Friday, Sept 26     | Saturday, Oct  11 11:59PM  |
-| **Lunar Lander**        | Friday, Oct  10     | Saturday, Oct  25 11:59PM  |
-| **Rise of AI**          | Friday, Oct  24     | Saturday, Nov  8 11:59PM   |
-| **Students' Choice**    | Friday, Nov  7      | Saturday, Dec  5 11:59PM   |
+| **Simple Scene**        | Friday, Feb 6       | Saturday, Feb 14 11:59PM   |
+| **Pong**                | Friday, Feb 13      | Saturday, Feb 28 11:59PM   |
+| **Lunar Lander**        | Friday, Feb 27      | Saturday, March 14 11:59PM |
+| **Rise of AI**          | Friday, March 13    | Saturday, April 4 11:59PM  |
+| **Students' Choice**    | Friday, April 3     | Saturday, April 24 11:59PM |
+<!-- Presentation Dates: April 24th, May 1st -->
 
 <br>
 
