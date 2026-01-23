@@ -169,14 +169,13 @@ As for your final letter grade, the following scale will be used:
 
 #### Project Schedule
 
-| Project                 | Release Date        | Due Date                   |
-|-------------------------|---------------------|----------------------------|
-| **Simple Scene**        | Friday, Feb 6       | Saturday, Feb 14 11:59PM   |
-| **Pong**                | Friday, Feb 13      | Saturday, Feb 28 11:59PM   |
-| **Lunar Lander**        | Friday, Feb 27      | Saturday, March 14 11:59PM |
-| **Rise of AI**          | Friday, March 13    | Saturday, April 4 11:59PM  |
-| **Students' Choice**    | Friday, April 3     | Saturday, April 24 11:59PM |
-<!-- Presentation Dates: April 24th, May 1st -->
+| Project                 | Release Date        | Due Date                    |
+|-------------------------|---------------------|-----------------------------|
+| **Simple Scene**        | Friday, Feb 6       | Saturday, Feb 14, 11:59PM   |
+| **Pong**                | Friday, Feb 13      | Saturday, Feb 28, 11:59PM   |
+| **Lunar Lander**        | Friday, Feb 27      | Saturday, Mar 14, 11:59PM   |
+| **Rise of the AI**      | Friday, Mar 13      | Saturday, Apr  4, 11:59PM   |
+| **Students' Choice**    | Friday, Apr  3      | Saturday, Apr 24, 11:59PM   |
 
 <br>
 
