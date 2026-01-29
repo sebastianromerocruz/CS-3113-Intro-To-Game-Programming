@@ -55,7 +55,22 @@ Of course, to model objects in real-life, we would add an extra dimension. This 
 
 ## Transformations
 
-_Transformations?_ you ask, _what are those?_ Paraphrasing quite a bit, transformations in game programming a functions that act on a point in space in order for that point to move somewhere else. For example, if point `p` starts at location (1, 0) in frame one and ends at location (1.05, -0.05) in frame 2, then we say that _point `p` underwent a transformation_. Now, it might seem like these transformations are only about moving, or, _translating_ things from place to the other (and, in a sense, it is), but they are a little bit more nuanced than that.
+_Transformations?_ you ask, _what are those?_ Paraphrasing quite a bit, transformations in game programming a functions that act on a point in space in order for that point to move somewhere else. 
+
+<a id="fg-2"></a>
+
+<p align=center>
+    <img src="assets/what-transformations-are.png">
+    </img>
+</p>
+
+<p align=center>
+    <sub>
+        <strong>Figure II</strong>: You know?
+    </sub>
+</p>
+
+For example, if point `p` starts at location (1, 0) in frame one and ends at location (1.05, -0.05) in frame 2, then we say that _point `p` underwent a transformation_. Now, it might seem like these transformations are only about moving, or, _translating_ things from place to the other (and, in a sense, it is), but they are a little bit more nuanced than that.
 
 In reality, we have three types of transformations: **scaling**, **rotation**, and the familiar **translation**. Let's tackle those one-by-one.
 
@@ -65,7 +80,7 @@ In reality, we have three types of transformations: **scaling**, **rotation**, a
 
 Scaling, properly defined, is a transformation that _enlarges and/or shrinks objects_ by some sort of **scale factor**. Typically, we have two types of scaling:
 
-1. **Uniform (Isotripic) Scaling**: Where the object enlarges/shrinks the same in all cartesian directions. For example...
+1. **Uniform (Isotropic) Scaling**: Where the object enlarges/shrinks the same in all cartesian directions. For example...
     - Zooming in to/out of an image
     - "Heartbeat" effects
 2. **Non-Uniform (Anisotropic) Scaling**: Where the object enlarges/shrinks differently in at least one of the cartesian directions. For example...
@@ -73,7 +88,7 @@ Scaling, properly defined, is a transformation that _enlarges and/or shrinks obj
 
 For example, consider the following scaling operation:
 
-<a id="fg-2"></a>
+<a id="fg-3"></a>
 
 <p align=center>
     <img src="assets/scaling.png">
@@ -82,7 +97,7 @@ For example, consider the following scaling operation:
 
 <p align=center>
     <sub>
-        <strong>Figure II</strong>: A simple triangle being uniformly scaled by a factor of 2 alongside with its vector notation equivalent.
+        <strong>Figure III</strong>: A simple triangle being uniformly scaled by a factor of 2 alongside with its vector notation equivalent.
     </sub>
 </p>
 
@@ -94,7 +109,7 @@ As you can see by the operations taking place, scaling is fairly simple: we take
 
 Things get quite a bit more complicated when trying to model rotation. Luckily for us, raylib will do most of the heavy-lifting, but I'll go through the math below to illustrate what actually goes on under the hood. Unlike scaling, rotation is very much _directional_—that is, it contains its own x-, y-, z-components that need to be factored into the process. Note, too, that all of the rotations will be doing in this class will be done _about the object's origin_. So, how does a rotation look like?
 
-<a id="fg-3"></a>
+<a id="fg-4"></a>
 
 <p align=center>
     <img src="assets/rotation.png">
@@ -103,7 +118,7 @@ Things get quite a bit more complicated when trying to model rotation. Luckily f
 
 <p align=center>
     <sub>
-        <strong>Figure III</strong>: A simple triangle being rotated along its z-axis. Notice that the rotation matrix on the left is a <em>4 x 4</em> matrix.
+        <strong>Figure IV</strong>: A simple triangle being rotated along its z-axis. Notice that the rotation matrix on the left is a <em>4 x 4</em> matrix.
     </sub>
 </p>
 
@@ -115,7 +130,7 @@ As you can see, our target location is defined not by simply multiplying a numbe
 
 Last but not least we have **translation** which, in a way, is the most straight forward of all. Translation moves every point of an object by the same distance in any given direction. So, yes, this transformation is also directional, which does make it a tad bit more complex than scaling, but not quite as much as rotation:
 
-<a id="fg-4"></a>
+<a id="fg-5"></a>
 
 <p align=center>
     <img src="assets/translation.png">
@@ -124,7 +139,7 @@ Last but not least we have **translation** which, in a way, is the most straight
 
 <p align=center>
     <sub>
-        <strong>Figure IV</strong>: A simple triangle being translated by a 3<code>x</code> - 2<code>y</code> vector.
+        <strong>Figure V</strong>: A simple triangle being translated by a 3<code>x</code> - 2<code>y</code> vector.
     </sub>
 </p>
 
@@ -146,7 +161,7 @@ DrawPoly({ SCREEN_WIDTH / 2 , SCREEN_HEIGHT / 2 }, 3, 100, 0.0f, RED);
 
 Running our program, we should see the following:
 
-<a id="fg-5"></a>
+<a id="fg-6"></a>
 
 <p align=center>
     <img src="assets/transformations-01.png">
@@ -155,13 +170,13 @@ Running our program, we should see the following:
 
 <p align=center>
     <sub>
-        <strong>Figure V</strong>: Welcome to game programming.
+        <strong>Figure VI</strong>: Welcome to game programming.
     </sub>
 </p>
 
 Fascinating! Now, why are triangles the building blocks of game programming? Well, triangles are the polygons with the least amount of sides possible. Therefore, one can theoretically build literally any shape by creating a **mesh** made out of triangles:
 
-<a id="fg-5"></a>
+<a id="fg-7"></a>
 
 <p align=center>
     <img src="assets/mesh.png">
@@ -170,7 +185,7 @@ Fascinating! Now, why are triangles the building blocks of game programming? Wel
 
 <p align=center>
     <sub>
-        <strong>Figure VI</strong>: A model of a <a href="https://www.researchgate.net/figure/D-mesh-triangles-with-different-resolution-3D-Modelling-for-programmers-Available-at_fig2_322096576">bunny</a> at different resolutions.
+        <strong>Figure VII</strong>: A model of a <a href="https://www.researchgate.net/figure/D-mesh-triangles-with-different-resolution-3D-Modelling-for-programmers-Available-at_fig2_322096576">bunny</a> at different resolutions.
     </sub>
 </p>
 
@@ -231,7 +246,7 @@ void update()
 
 Et voilá!
 
-<a id="fg-6"></a>
+<a id="fg-8"></a>
 
 <p align=center>
     <img src="assets/scaling.gif">
@@ -240,7 +255,7 @@ Et voilá!
 
 <p align=center>
     <sub>
-        <strong>Figure V</strong>: Absolutely terrifying.
+        <strong>Figure VIII</strong>: Absolutely terrifying.
     </sub>
 </p>
 
@@ -279,7 +294,7 @@ void update()
 }
 ```
 
-<a id="fg-7"></a>
+<a id="fg-9"></a>
 
 <p align=center>
     <img src="assets/rotation_scaling.gif">
@@ -288,7 +303,7 @@ void update()
 
 <p align=center>
     <sub>
-        <strong>Figure VI</strong>: Both rotation and scaling in action.
+        <strong>Figure IX</strong>: Both rotation and scaling in action.
     </sub>
 </p>
 
@@ -321,7 +336,7 @@ void update()
 }
 ```
 
-<a id="fg-8"></a>
+<a id="fg-10"></a>
 
 <p align=center>
     <img src="assets/all.gif">
@@ -330,7 +345,7 @@ void update()
 
 <p align=center>
     <sub>
-        <strong>Figure VII</strong>: Rotation, scaling, and translation in action.
+        <strong>Figure X</strong>: Rotation, scaling, and translation in action.
     </sub>
 </p>
 
