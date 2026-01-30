@@ -196,11 +196,11 @@ void DrawPoly(Vector2 center, int sides, float radius, float rotation, Color col
 ```
 
 One-by-one, we have:
-    - **`Vector2 center`**: A raylib object representing the location of the origin of your polygon, represented itself by a vector. Note that _coordinates in raylib are measued from the top-left corner_. Therefore, the centre of the screen is _not_ (0.0, 0.0), but rather (Width<sub><em>window</em></sub> / 2, Height<sub><em>window</em></sub> / 2).
-    - **`int sides`**: This value indicates which `n`-polygon we want to draw. In our case, `n` = 3, for a triangle.
-    - **`int radius`**: This integer represents the length of each of the polygon's sides. In other words, this parameter represents our _scale factor_. Because this factor is scaling our polygon in every direction equally, we can only perform uniform scaling with this function (which is enough for now).
-    - **`float rotation`**: This, in turn, is takes care of our rotation. Note that, for this function, all rotations are done _about the z-axis_ (that is, the axis that goes through the screen).
-    - **`Color color`**: As the name implies, this will determine the solid colour that will your polygon.
+- **`Vector2 center`**: A raylib object representing the location of the origin of your polygon, represented itself by a vector. Note that _coordinates in raylib are measued from the top-left corner_. Therefore, the centre of the screen is _not_ (0.0, 0.0), but rather (Width<sub><em>window</em></sub> / 2, Height<sub><em>window</em></sub> / 2).
+- **`int sides`**: This value indicates which `n`-polygon we want to draw. In our case, `n` = 3, for a triangle.
+- **`int radius`**: This integer represents the length of each of the polygon's sides. In other words, this parameter represents our _scale factor_. Because this factor is scaling our polygon in every direction equally, we can only perform uniform scaling with this function (which is enough for now).
+- **`float rotation`**: This, in turn, is takes care of our rotation. Note that, for this function, all rotations are done _about the z-axis_ (that is, the axis that goes through the screen).
+- **`Color color`**: As the name implies, this will determine the solid colour that will your polygon.
 
 So let's go ahead and apply some transformations to it. 
 
