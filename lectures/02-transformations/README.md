@@ -107,7 +107,7 @@ As you can see by the operations taking place, scaling is fairly simple: we take
 
 ### Rotation
 
-Things get quite a bit more complicated when trying to model rotation. Luckily for us, raylib will do most of the heavy-lifting, but I'll go through the math below to illustrate what actually goes on under the hood. Unlike scaling, rotation is very much _directional_—that is, it contains its own x-, y-, z-components that need to be factored into the process. Note, too, that all of the rotations will be doing in this class will be done _about the object's origin_. So, how does a rotation look like?
+Things get quite a bit more complicated when trying to model rotation. Luckily for us, raylib will do most of the heavy-lifting, but I'll go through the math below to illustrate what actually goes on under the hood. Unlike scaling, rotation is very much _directional_—that is, it contains its own x-, y-, z-components that need to be factored into the process. Note, too, that all of the rotations we will be doing in this class will be done _about the object's origin_. So, how does a rotation look like?
 
 <a id="fg-4"></a>
 
@@ -143,7 +143,7 @@ Last but not least we have **translation** which, in a way, is the most straight
     </sub>
 </p>
 
-Note that, unlike scaling and rotation, translation involves _addition_ as opposed to multiplication. Because of this applying all three transformations consecutively is actually quite involved. Like I said, though, raylib allows us to sort of bypass all of those difficulties in favour a much simplier (if less flexible) interface.
+Note that, unlike scaling and rotation, translation involves _addition_ as opposed to multiplication. Because of this, applying all three transformations consecutively is actually quite involved. Like I said, though, raylib allows us to sort of bypass all of those difficulties in favour of a simpler (if less flexible) interface.
 
 <br>
 
@@ -199,7 +199,7 @@ One-by-one, we have:
 - **`Vector2 center`**: A raylib object representing the location of the origin of your polygon, represented itself by a vector. Note that _coordinates in raylib are measued from the top-left corner_. Therefore, the centre of the screen is _not_ (0.0, 0.0), but rather (Width<sub><em>window</em></sub> / 2, Height<sub><em>window</em></sub> / 2).
 - **`int sides`**: This value indicates which `n`-polygon we want to draw. In our case, `n` = 3, for a triangle.
 - **`int radius`**: This integer represents the length of each of the polygon's sides. In other words, this parameter represents our _scale factor_. Because this factor is scaling our polygon in every direction equally, we can only perform uniform scaling with this function (which is enough for now).
-- **`float rotation`**: This, in turn, is takes care of our rotation. Note that, for this function, all rotations are done _about the z-axis_ (that is, the axis that goes through the screen).
+- **`float rotation`**: This, in turn, takes care of our rotation. Note that, for this function, all rotations are done _about the z-axis_ (that is, the axis that goes through the screen).
 - **`Color color`**: As the name implies, this will determine the solid colour that will your polygon.
 
 So let's go ahead and apply some transformations to it. 
@@ -231,7 +231,7 @@ void render()
 
 What if we wanted our triangle, as our first "game mechanic" of the semester, to grow by 1% every single frame? Certainly, the answer to this lies in changing the value of `gCurrentScale` every frame. But _where_ would we do this?
 
-Remember from last week that [**`render`**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/tree/main/lectures/01-introduction#main) is our dedicated function for all things related to drawing pixels on the screen, and that is _all_ that it should do. It should not have to deal with updating any of the game's logic whatsoever. That, instead, is the job of **`update`**. So, if we want something to be 101% larger than its previous size every frame, we should multiply our scale factor by a multiplier of `1.01f` _every frame_:
+Remember from last week that [**`render`**](https://github.com/sebastianromerocruz/CS-3113-Intro-To-Game-Programming/tree/main/lectures/01-introduction#main) is our dedicated function for all things related to drawing pixels on the screen, and that is _all_ that it should do. It should not have to deal with updating any of the game's logic whatsoever. That, instead, is the job of **`update`**. So, if we want something to be 101% of its previous size every frame, we should multiply our scale factor by a multiplier of `1.01f` _every frame_:
 
 ```c++
 // ...
